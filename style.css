@@ -104,6 +104,17 @@ h1 {
   align-items: center;
 }
 
+.bau-cua-page {
+  height: 100vh;
+  max-height: 100vh;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
 .xuc-sac-page {
   height: 100vh;
   max-height: 100vh;
@@ -157,8 +168,13 @@ h1 {
 }
 
 .bau-cua-container {
+  flex: 1;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 1.5rem;
+  padding: 0.5rem 0;
+  overflow: hidden;
 }
 
 /* Dice Controls */

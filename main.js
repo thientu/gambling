@@ -59,7 +59,7 @@ function renderBauCua() {
   const faces = ['bầu', 'cua', 'tôm', 'cá', 'gà', 'nai']
   const faceImages = ['bau', 'cua', 'tom', 'ca', 'ga', 'nai']
   return `
-    <div class="container game-page">
+    <div class="container game-page bau-cua-page" id="bauCuaPage">
       <button class="back-btn" onclick="window.location.hash=''">← Quay lại</button>
       <div class="dice-container bau-cua-container" id="diceContainer">
         ${[1, 2, 3].map(i => `
@@ -102,10 +102,15 @@ function attachEventListeners() {
       rollXucSac()
     })
   } else if (hash === 'bau-cua') {
-    const diceContainer = document.getElementById('diceContainer')
-    if (!diceContainer) return
+    const bauCuaPage = document.getElementById('bauCuaPage')
+    const backBtn = bauCuaPage.querySelector('.back-btn')
+    if (!bauCuaPage) return
 
-    diceContainer.addEventListener('click', () => {
+    backBtn.addEventListener('click', (e) => {
+      e.stopPropagation()
+    })
+
+    bauCuaPage.addEventListener('click', () => {
       rollBauCua()
     })
   }
