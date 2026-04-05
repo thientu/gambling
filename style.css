@@ -102,27 +102,31 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   height: 100vh;
   max-height: 100vh;
+  width: 100vw;
+  max-width: 100vw;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   user-select: none;
   overflow: hidden;
+  padding: 0;
 }
 
 .back-btn {
-  align-self: flex-start;
-  background: #e0e0e0;
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  background: rgba(224, 224, 224, 0.9);
   border: none;
-  padding: 0.4rem 0.8rem;
+  padding: 0.5rem 1rem;
   border-radius: 8px;
-  font-size: 0.9rem;
+  font-size: 1rem;
   cursor: pointer;
-  margin-bottom: 0.5rem;
   transition: background 0.2s;
   pointer-events: auto;
-  position: relative;
-  z-index: 10;
+  z-index: 100;
   flex-shrink: 0;
 }
 
@@ -135,40 +139,43 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
-  margin: 2rem 0;
-  flex-wrap: wrap;
+  gap: 2rem;
   flex: 1;
   flex-direction: column;
-  padding: 0.5rem 0;
-  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  padding: 4rem 1rem 2rem;
+  overflow: visible;
 }
 
 .xuc-sac-container {
-  gap: 0.75rem;
+  gap: 1.5rem;
 }
 
 .bau-cua-container {
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
 /* Dice Controls */
 .dice-controls {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
-  padding: 0.75rem 1rem 1rem;
+  gap: 3rem;
+  padding: 1rem 2rem;
   pointer-events: auto;
-  position: relative;
-  z-index: 10;
+  z-index: 100;
   flex-shrink: 0;
 }
 
 .dice-control-btn {
-  width: 36px;
-  height: 36px;
-  font-size: 1.3rem;
+  width: 50px;
+  height: 50px;
+  font-size: 1.8rem;
   font-weight: 600;
   border: none;
   background: linear-gradient(135deg, #667eea, #764ba2);
@@ -179,12 +186,12 @@ h1 {
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease;
-  box-shadow: 0 2px 6px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
 }
 
 .dice-control-btn:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.5);
 }
 
 .dice-control-btn:active:not(:disabled) {
@@ -198,14 +205,14 @@ h1 {
 
 /* 3D Dice Scene */
 .dice-scene {
-  width: 80px;
-  height: 80px;
-  perspective: 600px;
+  width: 200px;
+  height: 200px;
+  perspective: 1000px;
 }
 
 .xuc-sac-container .dice-scene {
-  width: 70px;
-  height: 70px;
+  width: 180px;
+  height: 180px;
 }
 
 /* Standard 3D Dice */
@@ -222,37 +229,37 @@ h1 {
   width: 100%;
   height: 100%;
   background: white;
-  border: 2px solid #ddd;
-  border-radius: 12px;
+  border: 3px solid #ddd;
+  border-radius: 20px;
   display: grid;
   grid-template: repeat(3, 1fr) / repeat(3, 1fr);
-  padding: 8px;
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 12px;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1);
   backface-visibility: hidden;
 }
 
 .xuc-sac-container .dice-face {
-  padding: 8px;
+  padding: 12px;
 }
 
 /* Dice face positions */
-.dice-face-1 { transform: rotateY(0deg) translateZ(40px); }
-.dice-face-2 { transform: rotateY(180deg) translateZ(40px); }
-.dice-face-3 { transform: rotateY(90deg) translateZ(40px); }
-.dice-face-4 { transform: rotateY(-90deg) translateZ(40px); }
-.dice-face-5 { transform: rotateX(90deg) translateZ(40px); }
-.dice-face-6 { transform: rotateX(-90deg) translateZ(40px); }
+.dice-face-1 { transform: rotateY(0deg) translateZ(100px); }
+.dice-face-2 { transform: rotateY(180deg) translateZ(100px); }
+.dice-face-3 { transform: rotateY(90deg) translateZ(100px); }
+.dice-face-4 { transform: rotateY(-90deg) translateZ(100px); }
+.dice-face-5 { transform: rotateX(90deg) translateZ(100px); }
+.dice-face-6 { transform: rotateX(-90deg) translateZ(100px); }
 
-.xuc-sac-container .dice-face-1 { transform: rotateY(0deg) translateZ(35px); }
-.xuc-sac-container .dice-face-2 { transform: rotateY(180deg) translateZ(35px); }
-.xuc-sac-container .dice-face-3 { transform: rotateY(90deg) translateZ(35px); }
-.xuc-sac-container .dice-face-4 { transform: rotateY(-90deg) translateZ(35px); }
-.xuc-sac-container .dice-face-5 { transform: rotateX(90deg) translateZ(35px); }
-.xuc-sac-container .dice-face-6 { transform: rotateX(-90deg) translateZ(35px); }
+.xuc-sac-container .dice-face-1 { transform: rotateY(0deg) translateZ(90px); }
+.xuc-sac-container .dice-face-2 { transform: rotateY(180deg) translateZ(90px); }
+.xuc-sac-container .dice-face-3 { transform: rotateY(90deg) translateZ(90px); }
+.xuc-sac-container .dice-face-4 { transform: rotateY(-90deg) translateZ(90px); }
+.xuc-sac-container .dice-face-5 { transform: rotateX(90deg) translateZ(90px); }
+.xuc-sac-container .dice-face-6 { transform: rotateX(-90deg) translateZ(90px); }
 
 .dice .dot {
-  width: 10px;
-  height: 10px;
+  width: 20px;
+  height: 20px;
   background: #1a1a1a;
   border-radius: 50%;
   justify-self: center;
@@ -260,8 +267,8 @@ h1 {
 }
 
 .xuc-sac-container .dice .dot {
-  width: 9px;
-  height: 9px;
+  width: 18px;
+  height: 18px;
 }
 
 /* Dice faces */
@@ -294,9 +301,9 @@ h1 {
 
 /* Bầu Cua Dice */
 .bau-cua-dice-scene {
-  width: 100px;
-  height: 100px;
-  perspective: 600px;
+  width: 220px;
+  height: 220px;
+  perspective: 1000px;
 }
 
 .bau-cua-dice {
@@ -312,23 +319,23 @@ h1 {
   width: 100%;
   height: 100%;
   background: linear-gradient(145deg, #ffffff, #e6e6e6);
-  border: 2px solid #ddd;
-  border-radius: 16px;
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+  border: 3px solid #ddd;
+  border-radius: 20px;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8px;
+  padding: 12px;
   backface-visibility: hidden;
   overflow: hidden;
 }
 
-.bau-cua-face-1 { transform: rotateY(0deg) translateZ(50px); }
-.bau-cua-face-2 { transform: rotateY(180deg) translateZ(50px); }
-.bau-cua-face-3 { transform: rotateY(90deg) translateZ(50px); }
-.bau-cua-face-4 { transform: rotateY(-90deg) translateZ(50px); }
-.bau-cua-face-5 { transform: rotateX(90deg) translateZ(50px); }
-.bau-cua-face-6 { transform: rotateX(-90deg) translateZ(50px); }
+.bau-cua-face-1 { transform: rotateY(0deg) translateZ(110px); }
+.bau-cua-face-2 { transform: rotateY(180deg) translateZ(110px); }
+.bau-cua-face-3 { transform: rotateY(90deg) translateZ(110px); }
+.bau-cua-face-4 { transform: rotateY(-90deg) translateZ(110px); }
+.bau-cua-face-5 { transform: rotateX(90deg) translateZ(110px); }
+.bau-cua-face-6 { transform: rotateX(-90deg) translateZ(110px); }
 
 .bau-cua-img {
   width: 100%;
@@ -409,41 +416,41 @@ h1 {
     font-size: 2.5rem;
   }
 
-  .xuc-sac-container .dice-scene {
-    width: 90px;
-    height: 90px;
-  }
-
-  .xuc-sac-container .dice-face-1 { transform: rotateY(0deg) translateZ(45px); }
-  .xuc-sac-container .dice-face-2 { transform: rotateY(180deg) translateZ(45px); }
-  .xuc-sac-container .dice-face-3 { transform: rotateY(90deg) translateZ(45px); }
-  .xuc-sac-container .dice-face-4 { transform: rotateY(-90deg) translateZ(45px); }
-  .xuc-sac-container .dice-face-5 { transform: rotateX(90deg) translateZ(45px); }
-  .xuc-sac-container .dice-face-6 { transform: rotateX(-90deg) translateZ(45px); }
-
   .dice-scene {
-    width: 100px;
-    height: 100px;
+    width: 280px;
+    height: 280px;
   }
 
-  .dice-face-1 { transform: rotateY(0deg) translateZ(50px); }
-  .dice-face-2 { transform: rotateY(180deg) translateZ(50px); }
-  .dice-face-3 { transform: rotateY(90deg) translateZ(50px); }
-  .dice-face-4 { transform: rotateY(-90deg) translateZ(50px); }
-  .dice-face-5 { transform: rotateX(90deg) translateZ(50px); }
-  .dice-face-6 { transform: rotateX(-90deg) translateZ(50px); }
+  .xuc-sac-container .dice-scene {
+    width: 250px;
+    height: 250px;
+  }
+
+  .dice-face-1 { transform: rotateY(0deg) translateZ(140px); }
+  .dice-face-2 { transform: rotateY(180deg) translateZ(140px); }
+  .dice-face-3 { transform: rotateY(90deg) translateZ(140px); }
+  .dice-face-4 { transform: rotateY(-90deg) translateZ(140px); }
+  .dice-face-5 { transform: rotateX(90deg) translateZ(140px); }
+  .dice-face-6 { transform: rotateX(-90deg) translateZ(140px); }
+
+  .xuc-sac-container .dice-face-1 { transform: rotateY(0deg) translateZ(125px); }
+  .xuc-sac-container .dice-face-2 { transform: rotateY(180deg) translateZ(125px); }
+  .xuc-sac-container .dice-face-3 { transform: rotateY(90deg) translateZ(125px); }
+  .xuc-sac-container .dice-face-4 { transform: rotateY(-90deg) translateZ(125px); }
+  .xuc-sac-container .dice-face-5 { transform: rotateX(90deg) translateZ(125px); }
+  .xuc-sac-container .dice-face-6 { transform: rotateX(-90deg) translateZ(125px); }
 
   .bau-cua-dice-scene {
-    width: 120px;
-    height: 120px;
+    width: 300px;
+    height: 300px;
   }
 
-  .bau-cua-face-1 { transform: rotateY(0deg) translateZ(60px); }
-  .bau-cua-face-2 { transform: rotateY(180deg) translateZ(60px); }
-  .bau-cua-face-3 { transform: rotateY(90deg) translateZ(60px); }
-  .bau-cua-face-4 { transform: rotateY(-90deg) translateZ(60px); }
-  .bau-cua-face-5 { transform: rotateX(90deg) translateZ(60px); }
-  .bau-cua-face-6 { transform: rotateX(-90deg) translateZ(60px); }
+  .bau-cua-face-1 { transform: rotateY(0deg) translateZ(150px); }
+  .bau-cua-face-2 { transform: rotateY(180deg) translateZ(150px); }
+  .bau-cua-face-3 { transform: rotateY(90deg) translateZ(150px); }
+  .bau-cua-face-4 { transform: rotateY(-90deg) translateZ(150px); }
+  .bau-cua-face-5 { transform: rotateX(90deg) translateZ(150px); }
+  .bau-cua-face-6 { transform: rotateX(-90deg) translateZ(150px); }
 
   .legend-img {
     width: 40px;
@@ -456,8 +463,8 @@ h1 {
   }
 
   .dice-control-btn {
-    width: 40px;
-    height: 40px;
-    font-size: 1.4rem;
+    width: 60px;
+    height: 60px;
+    font-size: 2rem;
   }
 }
