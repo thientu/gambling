@@ -72,9 +72,9 @@ export function renderDice(value, id = 'dice') {
 
 export function renderSmallDiceDots(value) {
   const dotPatterns = {
-    1: [1],
-    2: [1, 3],
-    3: [1, 2, 3],
+    1: [5],
+    2: [3, 7],
+    3: [3, 5, 7],
     4: [1, 3, 7, 9],
     5: [1, 3, 5, 7, 9],
     6: [1, 4, 7, 3, 6, 9]
