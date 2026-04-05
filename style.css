@@ -51,9 +51,7 @@ h1 {
 }
 
 @media (min-width: 480px) {
-  .game-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  /* Keep single column like mobile */
 }
 
 .game-card {
@@ -503,57 +501,9 @@ h1 {
   color: #e0e0e0;
 }
 
-/* Desktop improvements */
+/* Force mobile layout on all screens */
 @media (min-width: 768px) {
-  h1 {
-    font-size: 2.5rem;
-  }
-
-  .dice-scene {
-    width: min(30vmin, 280px);
-    height: min(30vmin, 280px);
-    --dice-size: min(30vmin, 280px);
-  }
-
-  .xuc-sac-container .dice-scene {
-    width: min(26vmin, 250px);
-    height: min(26vmin, 250px);
-    --dice-size: min(26vmin, 250px);
-  }
-
-  .bau-cua-dice-scene {
-    width: min(28vmin, 300px);
-    height: min(28vmin, 300px);
-    --dice-size: min(28vmin, 300px);
-  }
-
-  .dice-container {
-    gap: 4rem;
-  }
-
-  .xuc-sac-container {
-    gap: 8vmin;
-  }
-
-  .bau-cua-container {
-    gap: 10vmin;
-  }
-
-  .legend-img {
-    width: 40px;
-    height: 40px;
-  }
-
-  .roll-btn {
-    font-size: 1.4rem;
-    padding: 1.2rem 4rem;
-  }
-
-  .dice-control-btn {
-    width: 60px;
-    height: 60px;
-    font-size: 2rem;
-  }
+  /* Override desktop - keep mobile sizes */
 }
 
 /* Small mobile devices */
@@ -823,26 +773,5 @@ h1 {
 }
 
 @media (min-width: 768px) {
-  .history-bar {
-    padding: 0.6rem 1.25rem;
-  }
-
-  .history-label {
-    font-size: 1rem;
-  }
-
-  .history-dice-small {
-    width: 32px;
-    height: 32px;
-  }
-
-  .history-bau-cua-img {
-    width: 28px;
-    height: 28px;
-  }
-
-  .history-dot {
-    width: 6px;
-    height: 6px;
-  }
+  /* Override desktop - keep mobile sizes for history bar */
 }
