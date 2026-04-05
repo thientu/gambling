@@ -37,11 +37,6 @@ function renderXucSac() {
   return `
     <div class="container game-page xuc-sac-page" id="xucSacPage">
       <button class="back-btn" onclick="window.location.hash=''">← Quay lại</button>
-      <div class="dice-controls">
-        <button class="dice-control-btn" id="decreaseDice">−</button>
-        <span class="dice-count" id="diceCount">1</span>
-        <button class="dice-control-btn" id="increaseDice">+</button>
-      </div>
       <div class="dice-container xuc-sac-container" id="diceContainer">
         <div class="dice dice-6" id="dice">
           <span class="dot"></span>
@@ -51,6 +46,10 @@ function renderXucSac() {
           <span class="dot"></span>
           <span class="dot"></span>
         </div>
+      </div>
+      <div class="dice-controls">
+        <button class="dice-control-btn" id="decreaseDice">−</button>
+        <button class="dice-control-btn" id="increaseDice">+</button>
       </div>
     </div>
   `
@@ -80,7 +79,6 @@ function attachEventListeners() {
     const xucSacPage = document.getElementById('xucSacPage')
     const decreaseBtn = document.getElementById('decreaseDice')
     const increaseBtn = document.getElementById('increaseDice')
-    const diceCountEl = document.getElementById('diceCount')
 
     let diceCount = 1
 
@@ -88,7 +86,6 @@ function attachEventListeners() {
       e.stopPropagation()
       if (diceCount > 1) {
         diceCount--
-        diceCountEl.textContent = diceCount
         updateDiceDisplay(diceCount)
       }
     })
@@ -97,7 +94,6 @@ function attachEventListeners() {
       e.stopPropagation()
       if (diceCount < 3) {
         diceCount++
-        diceCountEl.textContent = diceCount
         updateDiceDisplay(diceCount)
       }
     })
@@ -155,8 +151,10 @@ function rollXucSac() {
 }
 
 function rollBauCua() {
+  const templates = ['bau-cua', 'bau-cua-classic']
   const faceImages = ['bau.png', 'cua.png', 'tom.png', 'ca.png', 'ga.png', 'nai.png']
   const faceNames = ['bầu', 'cua', 'tôm', 'cá', 'gà', 'nai']
+  const selectedTemplate = templates[Math.floor(Math.random() * templates.length)]
 
   for (let i = 1; i <= 3; i++) {
     const dice = document.getElementById(`dice${i}`)
@@ -169,7 +167,7 @@ function rollBauCua() {
       const dice = document.getElementById(`dice${i}`)
       const img = dice.querySelector('.bau-cua-img')
       const value = Math.floor(Math.random() * 6)
-      img.src = `/gambling/bau-cua/${faceImages[value]}`
+      img.src = `/gambling/${selectedTemplate}/${faceImages[value]}`
       img.alt = faceNames[value]
       img.classList.remove('rolling')
     }
