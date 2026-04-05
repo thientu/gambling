@@ -39,13 +39,13 @@ export function renderBauCua() {
     renderBauCuaDice(i + 1, GAME_CONFIG.BAU_CUA.images[0], GAME_CONFIG.BAU_CUA.names[0], imageType)
   ).join('')
 
-  const currentType = imageType === GAME_CONFIG.IMAGE_TYPES.EMOJI ? 'emoji' : 'svg'
+  const currentType = imageType === GAME_CONFIG.IMAGE_TYPES.EMOJI ? 'emoji' : 'image'
 
   return `
     <div class="container game-page bau-cua-page" id="bau-cuaPage">
       ${renderHistoryBar('bau-cua')}
       <button class="image-type-toggle" id="imageTypeToggle" data-current="${currentType}">
-        <span class="toggle-label">${currentType === 'svg' ? 'SVG' : 'Emoji'}</span>
+        <span class="toggle-label">${currentType === 'image' ? 'Image' : 'Emoji'}</span>
       </button>
       <div class="dice-container bau-cua-container" id="diceContainer">
         ${diceHTML}
@@ -67,9 +67,9 @@ export function attachBauCuaListeners(shakeCallbackSetter) {
   imageTypeToggle &&
     eventManager.on(imageTypeToggle, 'click', () => {
       const currentType = gameState.get('bauCua.imageType')
-      const newType = currentType === GAME_CONFIG.IMAGE_TYPES.SVG
+      const newType = currentType === GAME_CONFIG.IMAGE_TYPES.IMAGE
         ? GAME_CONFIG.IMAGE_TYPES.EMOJI
-        : GAME_CONFIG.IMAGE_TYPES.SVG
+        : GAME_CONFIG.IMAGE_TYPES.IMAGE
 
       gameState.set('bauCua.imageType', newType)
       navigate(window.location.hash)

@@ -1,7 +1,7 @@
 export const GAME_CONFIG = {
   ROLL_DURATION: 600,
   IMAGE_TYPES: {
-    SVG: 'svg',
+    IMAGE: 'image',
     EMOJI: 'emoji'
   },
   XUC_SAC: {
@@ -11,11 +11,11 @@ export const GAME_CONFIG = {
   },
   BAU_CUA: {
     diceCount: 3,
-    images: ['bau.svg', 'cua.svg', 'tom.svg', 'ca.svg', 'ga.svg', 'nai.svg'],
+    images: ['bau.png', 'cua.png', 'tom.png', 'ca.png', 'ga.png', 'nai.png'],
     emojis: ['🧉', '🦀', '🦐', '🐟', '🐓', '🦌'],
     names: ['bầu', 'cua', 'tôm', 'cá', 'gà', 'nai'],
-    imageDir: '/bau-cua/svg',
-    imageType: 'svg'
+    imageDir: '/bau-cua',
+    imageType: 'image'
   },
   MAX_HISTORY: 50
 }
