@@ -76,6 +76,7 @@ export function attachXucSacListeners(shakeCallbackSetter) {
 
   const shouldPreventRoll = (e) => {
     return e.target.closest('#historyBar') ||
+           e.target.closest('#shakeLock') ||
            e.target.closest('#decreaseDice') ||
            e.target.closest('#increaseDice') ||
            document.querySelector('.history-modal-overlay')
@@ -84,6 +85,7 @@ export function attachXucSacListeners(shakeCallbackSetter) {
   xucSacPage &&
     eventManager.on(xucSacPage, 'click', (e) => {
       if (shouldPreventRoll(e)) return
+      if (!gameState.get('xucSac.shakeLocked')) return
       rollXucSac()
     })
 

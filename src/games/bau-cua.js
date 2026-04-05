@@ -85,6 +85,7 @@ export function attachBauCuaListeners(shakeCallbackSetter) {
 
   const shouldPreventRoll = (e) => {
     return e.target.closest('#imageTypeToggle') ||
+           e.target.closest('#shakeLock') ||
            e.target.closest('#historyBar') ||
            document.querySelector('.history-modal-overlay')
   }
@@ -92,6 +93,7 @@ export function attachBauCuaListeners(shakeCallbackSetter) {
   bauCuaPage &&
     eventManager.on(bauCuaPage, 'click', (e) => {
       if (shouldPreventRoll(e)) return
+      if (!gameState.get('bauCua.shakeLocked')) return
       rollBauCua()
     })
 
