@@ -17,10 +17,14 @@ export function renderXucSac() {
   return `
     <div class="container game-page xuc-sac-page" id="xuc-sacPage">
       ${renderHistoryBar('xuc-sac')}
-      <div class="dice-controls">
-        <button class="dice-control-btn shake-lock-btn" id="shakeLock">${lockIcon}</button>
-        <button class="dice-control-btn" id="decreaseDice">−</button>
-        <button class="dice-control-btn" id="increaseDice">+</button>
+      <div class="task-bar">
+        <div class="task-bar-left">
+          <button class="dice-control-btn shake-lock-btn" id="shakeLock">${lockIcon}</button>
+        </div>
+        <div class="task-bar-right">
+          <button class="dice-control-btn" id="decreaseDice">−</button>
+          <button class="dice-control-btn" id="increaseDice">+</button>
+        </div>
       </div>
       <div class="dice-container xuc-sac-container" id="diceContainer">
         ${diceHTML}
@@ -76,9 +80,7 @@ export function attachXucSacListeners(shakeCallbackSetter) {
 
   const shouldPreventRoll = (e) => {
     return e.target.closest('#historyBar') ||
-           e.target.closest('#shakeLock') ||
-           e.target.closest('#decreaseDice') ||
-           e.target.closest('#increaseDice') ||
+           e.target.closest('.task-bar') ||
            document.querySelector('.history-modal-overlay')
   }
 

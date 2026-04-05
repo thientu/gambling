@@ -46,11 +46,15 @@ export function renderBauCua() {
   return `
     <div class="container game-page bau-cua-page" id="bau-cuaPage">
       ${renderHistoryBar('bau-cua')}
-      <div class="dice-controls">
-        <button class="dice-control-btn shake-lock-btn" id="shakeLock">${lockIcon}</button>
-        <button class="image-type-toggle" id="imageTypeToggle" data-current="${currentType}">
-          <span class="toggle-label">${currentType === 'image' ? 'Image' : 'Emoji'}</span>
-        </button>
+      <div class="task-bar">
+        <div class="task-bar-left">
+          <button class="dice-control-btn shake-lock-btn" id="shakeLock">${lockIcon}</button>
+        </div>
+        <div class="task-bar-right">
+          <button class="image-type-toggle" id="imageTypeToggle" data-current="${currentType}">
+            <span class="toggle-label">${currentType === 'image' ? 'Image' : 'Emoji'}</span>
+          </button>
+        </div>
       </div>
       <div class="dice-container bau-cua-container" id="diceContainer">
         ${diceHTML}
@@ -84,9 +88,8 @@ export function attachBauCuaListeners(shakeCallbackSetter) {
     })
 
   const shouldPreventRoll = (e) => {
-    return e.target.closest('#imageTypeToggle') ||
-           e.target.closest('#shakeLock') ||
-           e.target.closest('#historyBar') ||
+    return e.target.closest('#historyBar') ||
+           e.target.closest('.task-bar') ||
            document.querySelector('.history-modal-overlay')
   }
 
