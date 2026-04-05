@@ -51,16 +51,20 @@ class GameState {
   }
 
   addHistory(gameType, values) {
-    const history = this.state[gameType].history
+    // Convert kebab-case to camelCase if needed
+    const camelCaseKey = gameType.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase())
+    const history = this.state[camelCaseKey].history
     history.push({ values, timestamp: Date.now() })
     if (history.length > GAME_CONFIG.MAX_HISTORY) {
       history.shift()
     }
-    this.notify(`${gameType}.history`, history)
+    this.notify(`${camelCaseKey}.history`, history)
   }
 
   getHistory(gameType) {
-    return this.state[gameType].history
+    // Convert kebab-case to camelCase
+    const camelCaseKey = gameType.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase())
+    return this.state[camelCaseKey]?.history || []
   }
 }
 
