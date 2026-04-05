@@ -151,11 +151,11 @@ h1 {
 }
 
 .xuc-sac-container {
-  gap: 3vmin;
+  gap: 6vmin;
 }
 
 .bau-cua-container {
-  gap: 4vmin;
+  gap: 8vmin;
 }
 
 /* Dice Controls */
@@ -449,11 +449,11 @@ h1 {
   }
 
   .xuc-sac-container {
-    gap: 4vmin;
+    gap: 8vmin;
   }
 
   .bau-cua-container {
-    gap: 5vmin;
+    gap: 10vmin;
   }
 
   .legend-img {
@@ -498,10 +498,10 @@ h1 {
   }
 
   .xuc-sac-container {
-    gap: 2.5vmin;
+    gap: 5vmin;
   }
 
   .bau-cua-container {
-    gap: 3.5vmin;
+    gap: 6vmin;
   }
 }
