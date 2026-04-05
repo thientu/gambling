@@ -51,12 +51,23 @@ export function attachXucSacListeners(shakeCallbackSetter) {
       }
     })
 
+  const shouldPreventRoll = (e) => {
+    return e.target.closest('#historyBar') ||
+           e.target.closest('#decreaseDice') ||
+           e.target.closest('#increaseDice') ||
+           document.querySelector('.history-modal-overlay')
+  }
+
   xucSacPage &&
-    eventManager.on(xucSacPage, 'click', () => {
+    eventManager.on(xucSacPage, 'click', (e) => {
+      if (shouldPreventRoll(e)) return
       rollXucSac()
     })
 
-  shakeCallbackSetter(() => rollXucSac())
+  shakeCallbackSetter(() => {
+    if (document.querySelector('.history-modal-overlay')) return
+    rollXucSac()
+  })
 
   function updateDiceCount(newCount) {
     diceCount = newCount

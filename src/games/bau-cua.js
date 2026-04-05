@@ -58,11 +58,22 @@ export function attachBauCuaListeners(shakeCallbackSetter) {
   const bauCuaPage = domCache.get('bau-cuaPage')
   const imageTypeToggle = domCache.get('imageTypeToggle')
 
+  const shouldPreventRoll = (e) => {
+    return e.target.closest('#imageTypeToggle') ||
+           e.target.closest('#historyBar') ||
+           document.querySelector('.history-modal-overlay')
+  }
+
   bauCuaPage &&
     eventManager.on(bauCuaPage, 'click', (e) => {
-      if (e.target.closest('#imageTypeToggle')) return
+      if (shouldPreventRoll(e)) return
       rollBauCua()
     })
+
+  shakeCallbackSetter(() => {
+    if (document.querySelector('.history-modal-overlay')) return
+    rollBauCua()
+  })
 
   imageTypeToggle &&
     eventManager.on(imageTypeToggle, 'click', () => {
