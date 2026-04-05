@@ -112,6 +112,8 @@ h1 {
   user-select: none;
   overflow: hidden;
   padding: 0;
+  perspective: 2000px;
+  perspective-origin: center center;
 }
 
 .back-btn {
@@ -207,7 +209,7 @@ h1 {
 .dice-scene {
   width: 200px;
   height: 200px;
-  perspective: 1000px;
+  perspective: none;
 }
 
 .xuc-sac-container .dice-scene {
@@ -303,7 +305,7 @@ h1 {
 .bau-cua-dice-scene {
   width: 220px;
   height: 220px;
-  perspective: 1000px;
+  perspective: none;
 }
 
 .bau-cua-dice {
