@@ -105,25 +105,30 @@ h1 {
 }
 
 .xuc-sac-page {
-  min-height: 100vh;
+  height: 100vh;
+  max-height: 100vh;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   user-select: none;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .back-btn {
   align-self: flex-start;
   background: #e0e0e0;
   border: none;
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 0.8rem;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 0.9rem;
   cursor: pointer;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   transition: background 0.2s;
   pointer-events: auto;
   position: relative;
   z-index: 10;
+  flex-shrink: 0;
 }
 
 .back-btn:hover {
@@ -143,10 +148,12 @@ h1 {
 .xuc-sac-container {
   flex: 1;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
-  margin: 3rem 0;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  overflow: hidden;
 }
 
 .bau-cua-container {
@@ -158,26 +165,24 @@ h1 {
 .dice-controls {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
-  background: white;
-  padding: 0.75rem 1.5rem;
-  border-radius: 16px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1rem;
+  justify-content: center;
+  gap: 2rem;
+  padding: 0.75rem 1rem 1rem;
   pointer-events: auto;
   position: relative;
   z-index: 10;
+  flex-shrink: 0;
 }
 
 .dice-control-btn {
-  width: 44px;
-  height: 44px;
-  font-size: 1.5rem;
+  width: 36px;
+  height: 36px;
+  font-size: 1.3rem;
   font-weight: 600;
   border: none;
   background: linear-gradient(135deg, #667eea, #764ba2);
   color: white;
-  border-radius: 12px;
+  border-radius: 50%;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -200,14 +205,6 @@ h1 {
   cursor: not-allowed;
 }
 
-.dice-count {
-  font-size: 1.5rem;
-  font-weight: 700;
-  min-width: 2rem;
-  text-align: center;
-  color: #1a1a1a;
-}
-
 /* Standard Dice */
 .dice {
   width: 80px;
@@ -222,14 +219,14 @@ h1 {
 }
 
 .xuc-sac-container .dice {
-  width: 120px;
-  height: 120px;
-  padding: 12px;
+  width: 70px;
+  height: 70px;
+  padding: 8px;
 }
 
 .xuc-sac-container .dice .dot {
-  width: 14px;
-  height: 14px;
+  width: 9px;
+  height: 9px;
 }
 
 .dice::before {
@@ -384,10 +381,62 @@ h1 {
   animation: roll 0.6s ease-in-out;
 }
 
+/* Landscape mobile */
+@media (max-width: 767px) and (orientation: landscape) {
+  .xuc-sac-container {
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+
+  .xuc-sac-container .dice {
+    width: 60px;
+    height: 60px;
+    padding: 6px;
+  }
+
+  .xuc-sac-container .dice .dot {
+    width: 7px;
+    height: 7px;
+  }
+
+  .back-btn {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .dice-control-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 1.1rem;
+  }
+
+  .dice-controls {
+    gap: 1.5rem;
+    padding: 0.5rem 1rem 0.75rem;
+  }
+}
+
 /* Desktop improvements */
 @media (min-width: 768px) {
   h1 {
     font-size: 2.5rem;
+  }
+
+  .xuc-sac-container {
+    flex-direction: row;
+    gap: 2rem;
+  }
+
+  .xuc-sac-container .dice {
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+  }
+
+  .xuc-sac-container .dice .dot {
+    width: 11px;
+    height: 11px;
   }
 
   .dice {
@@ -413,5 +462,11 @@ h1 {
   .roll-btn {
     font-size: 1.4rem;
     padding: 1.2rem 4rem;
+  }
+
+  .dice-control-btn {
+    width: 44px;
+    height: 44px;
+    font-size: 1.5rem;
   }
 }
