@@ -59,6 +59,7 @@ function setupShakeDetection() {
 }
 
 function initApp() {
+  console.log('[Main] Initializing app, readyState:', document.readyState)
   initRouter()
 
   if (window.DeviceMotionEvent) {
@@ -67,7 +68,9 @@ function initApp() {
 }
 
 if (document.readyState === 'complete') {
+  console.log('[Main] Document already loaded, initializing immediately')
   initApp()
 } else {
+  console.log('[Main] Waiting for load event, readyState:', document.readyState)
   window.addEventListener('load', initApp)
 }

@@ -29,8 +29,14 @@ function navigate(hash) {
   const renderer = routes[route] || renderHome
   const app = document.querySelector('#app')
 
+  console.log('[Router] Navigation:', { hash, route, hasRenderer: !!renderer, hasApp: !!app })
+
   if (app) {
-    app.innerHTML = renderer()
+    const html = renderer()
+    console.log('[Router] HTML length:', html?.length || 0)
+    app.innerHTML = html
+  } else {
+    console.error('[Router] #app element not found!')
   }
 
   domCache.invalidate()
