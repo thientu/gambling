@@ -161,7 +161,7 @@ h1 {
 /* Dice Controls */
 .dice-controls {
   position: fixed;
-  bottom: 2rem;
+  top: 2rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
