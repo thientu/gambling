@@ -1,5 +1,7 @@
 import { GAME_CONFIG } from '../config/game.config.js'
 
+const STORAGE_KEY = 'gamblingGameState'
+
 class GameState {
   constructor() {
     this.state = {
@@ -13,6 +15,36 @@ class GameState {
       currentRoute: ''
     }
     this.listeners = new Map()
+    this.loadFromStorage()
+  }
+
+  saveToStorage() {
+    try {
+      const toSave = {
+        xucSac: { history: this.state.xucSac.history },
+        bauCua: { history: this.state.bauCua.history }
+      }
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(toSave))
+    } catch (error) {
+      console.warn('Failed to save game state:', error)
+    }
+  }
+
+  loadFromStorage() {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY)
+      if (saved) {
+        const parsed = JSON.parse(saved)
+        if (parsed.xucSac?.history) {
+          this.state.xucSac.history = parsed.xucSac.history
+        }
+        if (parsed.bauCua?.history) {
+          this.state.bauCua.history = parsed.bauCua.history
+        }
+      }
+    } catch (error) {
+      console.warn('Failed to load game state:', error)
+    }
   }
 
   get(path) {
@@ -59,6 +91,7 @@ class GameState {
       history.shift()
     }
     this.notify(`${camelCaseKey}.history`, history)
+    this.saveToStorage()
   }
 
   getHistory(gameType) {
