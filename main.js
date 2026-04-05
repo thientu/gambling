@@ -13,7 +13,7 @@ const GAME_CONFIG = {
     diceCount: 3,
     images: ['bau.png', 'cua.png', 'tom.png', 'ca.png', 'ga.png', 'nai.png'],
     names: ['bầu', 'cua', 'tôm', 'cá', 'gà', 'nai'],
-    imageDir: '/gambling/bau-cua'
+    imageDir: 'https://cdn.jsdelivr.net/gh/thientu/gambling@main/public/bau-cua'
   }
 }
 
