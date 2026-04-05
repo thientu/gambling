@@ -39,7 +39,7 @@ h1 {
   font-size: 1.8rem;
   text-align: center;
   margin: 1.5rem 0;
-  color: #1a1a1a;
+  color: #ffffff;
 }
 
 /* Game Grid */
@@ -57,13 +57,15 @@ h1 {
 }
 
 .game-card {
-  background: white;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   padding: 2rem 1rem;
   text-align: center;
   text-decoration: none;
-  color: #213547;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  color: #e0e0e0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
@@ -73,7 +75,9 @@ h1 {
 
 .game-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+  border-color: rgba(102, 126, 234, 0.3);
 }
 
 .game-card:active {
@@ -94,7 +98,7 @@ h1 {
 .game-card p {
   margin: 0;
   font-size: 0.9rem;
-  color: #666;
+  color: #b0b0b0;
 }
 
 /* Game Page */
@@ -120,20 +124,22 @@ h1 {
   position: fixed;
   top: 1rem;
   left: 1rem;
-  background: rgba(224, 224, 224, 0.9);
+  background: rgba(102, 126, 234, 0.9);
   border: none;
   padding: 0.5rem 1rem;
   border-radius: 8px;
   font-size: 1rem;
+  color: white;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: all 0.2s;
   pointer-events: auto;
   z-index: 100;
   flex-shrink: 0;
 }
 
 .back-btn:hover {
-  background: #d0d0d0;
+  background: rgba(102, 126, 234, 1);
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
 }
 
 /* Dice Container */
@@ -470,7 +476,7 @@ h1 {
   text-align: center;
   min-height: 2rem;
   margin-top: 1rem;
-  color: #1a1a1a;
+  color: #ffffff;
 }
 
 /* Legend */
@@ -488,10 +494,13 @@ h1 {
   align-items: center;
   gap: 0.75rem;
   font-size: 1rem;
-  background: white;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 0.75rem;
   border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  color: #e0e0e0;
 }
 
 /* Desktop improvements */
@@ -670,7 +679,7 @@ h1 {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -684,14 +693,15 @@ h1 {
 }
 
 .history-modal {
-  background: white;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   width: 90%;
   max-width: 400px;
   max-height: 80vh;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
   animation: slideUp 0.3s ease;
 }
 
@@ -705,7 +715,7 @@ h1 {
   align-items: center;
   justify-content: space-between;
   padding: 1rem 1.25rem;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   background: linear-gradient(135deg, #667eea, #764ba2);
   border-radius: 16px 16px 0 0;
 }
@@ -746,7 +756,8 @@ h1 {
   align-items: center;
   justify-content: space-between;
   padding: 0.75rem;
-  background: #f8f9fa;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 10px;
   margin-bottom: 0.5rem;
 }
@@ -766,7 +777,7 @@ h1 {
 
 .history-item-time {
   font-size: 0.75rem;
-  color: #666;
+  color: #b0b0b0;
 }
 
 .history-item-dice {
