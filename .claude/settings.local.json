@@ -5,7 +5,9 @@
       "Bash(gh repo create:*)",
       "Bash(npm create:*)",
       "Bash(npm init:*)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Bash(git push:*)",
+      "Bash(npm run dev:*)"
     ]
   }
 }
