@@ -186,41 +186,36 @@ h1 {
 
 /* Bầu Cua Dice */
 .bau-cua-dice {
-  width: 90px;
-  height: 90px;
+  width: 100px;
+  height: 100px;
   background: linear-gradient(145deg, #ffffff, #e6e6e6);
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2.5rem;
-  font-weight: bold;
   position: relative;
   overflow: hidden;
+  padding: 8px;
 }
 
-.bau-cua-face::before {
-  content: '';
-  position: absolute;
-  inset: 3px;
-  border: 2px solid #ddd;
-  border-radius: 12px;
+.bau-cua-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
 }
 
-.bau-cua-0::before { background: linear-gradient(135deg, #ff6b6b, #ee5a5a); }
-.bau-cua-1::before { background: linear-gradient(135deg, #4ecdc4, #3db8b0); }
-.bau-cua-2::before { background: linear-gradient(135deg, #ffe66d, #ffd93d); }
-.bau-cua-3::before { background: linear-gradient(135deg, #95e1d3, #7dd3c0); }
-.bau-cua-4::before { background: linear-gradient(135deg, #dda0dd, #cc8fcc); }
-.bau-cua-5::before { background: linear-gradient(135deg, #f093fb, #e080e8); }
+.bau-cua-img.rolling {
+  animation: roll 0.8s ease-in-out;
+}
 
-.bau-cua-0::after { content: '🍐'; }
-.bau-cua-1::after { content: '🦀'; }
-.bau-cua-2::after { content: '🦐'; }
-.bau-cua-3::after { content: '🐟'; }
-.bau-cua-4::after { content: '🐓'; }
-.bau-cua-5::after { content: '🦌'; }
+/* Legend */
+.legend-img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
 
 /* Roll Button */
 .roll-btn {
@@ -266,26 +261,20 @@ h1 {
   margin-top: 2rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 0.5rem;
+  gap: 0.75rem;
   width: 100%;
-  max-width: 300px;
+  max-width: 320px;
 }
 
 .legend-item {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9rem;
+  gap: 0.75rem;
+  font-size: 1rem;
   background: white;
-  padding: 0.5rem;
-  border-radius: 8px;
-}
-
-.legend-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  padding: 0.75rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 /* Animations */
@@ -318,9 +307,13 @@ h1 {
   }
 
   .bau-cua-dice {
-    width: 110px;
-    height: 110px;
-    font-size: 3rem;
+    width: 120px;
+    height: 120px;
+  }
+
+  .legend-img {
+    width: 40px;
+    height: 40px;
   }
 
   .roll-btn {
