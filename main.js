@@ -35,9 +35,14 @@ function renderHome() {
 
 function renderXucSac() {
   return `
-    <div class="container game-page">
+    <div class="container game-page xuc-sac-page" id="xucSacPage">
       <button class="back-btn" onclick="window.location.hash=''">← Quay lại</button>
-      <div class="dice-container" id="diceContainer">
+      <div class="dice-controls">
+        <button class="dice-control-btn" id="decreaseDice">−</button>
+        <span class="dice-count" id="diceCount">1</span>
+        <button class="dice-control-btn" id="increaseDice">+</button>
+      </div>
+      <div class="dice-container xuc-sac-container" id="diceContainer">
         <div class="dice dice-6" id="dice">
           <span class="dot"></span>
           <span class="dot"></span>
@@ -57,7 +62,7 @@ function renderBauCua() {
   return `
     <div class="container game-page">
       <button class="back-btn" onclick="window.location.hash=''">← Quay lại</button>
-      <div class="dice-container" id="diceContainer">
+      <div class="dice-container bau-cua-container" id="diceContainer">
         ${[1, 2, 3].map(i => `
           <div class="bau-cua-dice" id="dice${i}">
             <img src="/gambling/bau-cua/bau.png" alt="bầu" class="bau-cua-img">
@@ -69,36 +74,83 @@ function renderBauCua() {
 }
 
 function attachEventListeners() {
-  const diceContainer = document.getElementById('diceContainer')
-  if (!diceContainer) return
+  const hash = window.location.hash.slice(1)
 
-  diceContainer.addEventListener('click', () => {
-    const hash = window.location.hash.slice(1)
-    if (hash === 'xuc-sac') {
+  if (hash === 'xuc-sac') {
+    const xucSacPage = document.getElementById('xucSacPage')
+    const decreaseBtn = document.getElementById('decreaseDice')
+    const increaseBtn = document.getElementById('increaseDice')
+    const diceCountEl = document.getElementById('diceCount')
+
+    let diceCount = 1
+
+    decreaseBtn.addEventListener('click', (e) => {
+      e.stopPropagation()
+      if (diceCount > 1) {
+        diceCount--
+        diceCountEl.textContent = diceCount
+        updateDiceDisplay(diceCount)
+      }
+    })
+
+    increaseBtn.addEventListener('click', (e) => {
+      e.stopPropagation()
+      if (diceCount < 3) {
+        diceCount++
+        diceCountEl.textContent = diceCount
+        updateDiceDisplay(diceCount)
+      }
+    })
+
+    xucSacPage.addEventListener('click', () => {
       rollXucSac()
-    } else if (hash === 'bau-cua') {
+    })
+  } else if (hash === 'bau-cua') {
+    const diceContainer = document.getElementById('diceContainer')
+    if (!diceContainer) return
+
+    diceContainer.addEventListener('click', () => {
       rollBauCua()
-    }
-  })
+    })
+  }
 }
 
-function rollXucSac() {
-  const dice = document.getElementById('dice')
+function updateDiceDisplay(count) {
+  const container = document.querySelector('.xuc-sac-container')
+  container.innerHTML = ''
 
-  dice.classList.add('rolling')
-
-  setTimeout(() => {
-    const value = Math.floor(Math.random() * 6) + 1
-    dice.className = `dice dice-${value}`
-    dice.classList.remove('rolling')
-
-    // Generate dots based on value
-    dice.innerHTML = ''
-    for (let i = 0; i < value; i++) {
+  for (let i = 0; i < count; i++) {
+    const dice = document.createElement('div')
+    dice.className = 'dice dice-6'
+    dice.id = `dice${i}`
+    for (let j = 0; j < 6; j++) {
       const dot = document.createElement('span')
       dot.className = 'dot'
       dice.appendChild(dot)
     }
+    container.appendChild(dice)
+  }
+}
+
+function rollXucSac() {
+  const diceElements = document.querySelectorAll('.xuc-sac-container .dice')
+
+  diceElements.forEach(dice => {
+    dice.classList.add('rolling')
+  })
+
+  setTimeout(() => {
+    diceElements.forEach(dice => {
+      const value = Math.floor(Math.random() * 6) + 1
+      dice.className = `dice dice-${value}`
+
+      dice.innerHTML = ''
+      for (let i = 0; i < value; i++) {
+        const dot = document.createElement('span')
+        dot.className = 'dot'
+        dice.appendChild(dot)
+      }
+    })
   }, 600)
 }
 

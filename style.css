@@ -104,6 +104,13 @@ h1 {
   align-items: center;
 }
 
+.xuc-sac-page {
+  min-height: 100vh;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
 .back-btn {
   align-self: flex-start;
   background: #e0e0e0;
@@ -114,6 +121,9 @@ h1 {
   cursor: pointer;
   margin-bottom: 1rem;
   transition: background 0.2s;
+  pointer-events: auto;
+  position: relative;
+  z-index: 10;
 }
 
 .back-btn:hover {
@@ -130,6 +140,69 @@ h1 {
   flex-wrap: wrap;
 }
 
+.xuc-sac-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+/* Dice Controls */
+.dice-controls {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+  pointer-events: auto;
+  position: relative;
+  z-index: 10;
+}
+
+.dice-control-btn {
+  width: 44px;
+  height: 44px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  border: none;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(102, 126, 234, 0.3);
+}
+
+.dice-control-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(102, 126, 234, 0.4);
+}
+
+.dice-control-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.dice-control-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.dice-count {
+  font-size: 1.5rem;
+  font-weight: 700;
+  min-width: 2rem;
+  text-align: center;
+  color: #1a1a1a;
+}
+
 /* Standard Dice */
 .dice {
   width: 80px;
@@ -141,6 +214,17 @@ h1 {
   grid-template: repeat(3, 1fr) / repeat(3, 1fr);
   padding: 8px;
   position: relative;
+}
+
+.xuc-sac-container .dice {
+  width: 120px;
+  height: 120px;
+  padding: 12px;
+}
+
+.xuc-sac-container .dice .dot {
+  width: 14px;
+  height: 14px;
 }
 
 .dice::before {
