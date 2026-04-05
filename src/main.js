@@ -58,10 +58,16 @@ function setupShakeDetection() {
   document.addEventListener('touchstart', setupHandler, { once: true })
 }
 
-window.addEventListener('load', () => {
+function initApp() {
   initRouter()
 
   if (window.DeviceMotionEvent) {
     setupShakeDetection()
   }
-})
+}
+
+if (document.readyState === 'complete') {
+  initApp()
+} else {
+  window.addEventListener('load', initApp)
+}
