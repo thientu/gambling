@@ -271,29 +271,34 @@ function rollXucSac() {
   if (!diceElements.length) return
 
   diceElements.forEach(dice => {
+    const duration = GAME_CONFIG.ROLL_DURATION + Math.floor(Math.random() * 400 - 200)
+    dice.style.transition = `transform ${duration}ms cubic-bezier(0.17, 0.67, 0.12, 0.99)`
+
     const extraRotations = {
-      x: Math.floor(Math.random() * 4) * 360,
-      y: Math.floor(Math.random() * 4) * 360
+      x: Math.floor(Math.random() * 8) * 360,
+      y: Math.floor(Math.random() * 8) * 360,
+      z: Math.floor(Math.random() * 8) * 360
     }
-    dice.style.transform = `rotateX(${extraRotations.x}deg) rotateY(${extraRotations.y}deg)`
+    dice.style.transform = `rotateX(${extraRotations.x}deg) rotateY(${extraRotations.y}deg) rotateZ(${extraRotations.z}deg)`
   })
 
   setTimeout(() => {
     diceElements.forEach(dice => {
       const value = Math.floor(Math.random() * 6) + 1
       const rotations = {
-        1: { x: 0, y: 0 },
-        2: { x: 0, y: 180 },
-        3: { x: 0, y: -90 },
-        4: { x: 0, y: 90 },
-        5: { x: -90, y: 0 },
-        6: { x: 90, y: 0 }
+        1: { x: 0, y: 0, z: 0 },
+        2: { x: 0, y: 180, z: 0 },
+        3: { x: 0, y: -90, z: 0 },
+        4: { x: 0, y: 90, z: 0 },
+        5: { x: -90, y: 0, z: 0 },
+        6: { x: 90, y: 0, z: 0 }
       }
       const extraRotations = {
-        x: Math.floor(Math.random() * 2 + 2) * 360,
-        y: Math.floor(Math.random() * 2 + 2) * 360
+        x: Math.floor(Math.random() * 6 + 3) * 360,
+        y: Math.floor(Math.random() * 6 + 3) * 360,
+        z: Math.floor(Math.random() * 4 + 2) * 360
       }
-      dice.style.transform = `rotateX(${rotations[value].x + extraRotations.x}deg) rotateY(${rotations[value].y + extraRotations.y}deg)`
+      dice.style.transform = `rotateX(${rotations[value].x + extraRotations.x}deg) rotateY(${rotations[value].y + extraRotations.y}deg) rotateZ(${rotations[value].z + extraRotations.z}deg)`
       dice.setAttribute('data-value', value)
     })
   }, GAME_CONFIG.ROLL_DURATION)
@@ -304,29 +309,34 @@ function rollBauCua() {
   if (!diceElements.length) return
 
   diceElements.forEach(dice => {
+    const duration = GAME_CONFIG.ROLL_DURATION + Math.floor(Math.random() * 400 - 200)
+    dice.style.transition = `transform ${duration}ms cubic-bezier(0.17, 0.67, 0.12, 0.99)`
+
     const extraRotations = {
-      x: Math.floor(Math.random() * 4) * 360,
-      y: Math.floor(Math.random() * 4) * 360
+      x: Math.floor(Math.random() * 8) * 360,
+      y: Math.floor(Math.random() * 8) * 360,
+      z: Math.floor(Math.random() * 8) * 360
     }
-    dice.style.transform = `rotateX(${extraRotations.x}deg) rotateY(${extraRotations.y}deg)`
+    dice.style.transform = `rotateX(${extraRotations.x}deg) rotateY(${extraRotations.y}deg) rotateZ(${extraRotations.z}deg)`
   })
 
   setTimeout(() => {
     diceElements.forEach(dice => {
       const value = Math.floor(Math.random() * 6)
       const rotations = {
-        0: { x: 0, y: 0 },
-        1: { x: 0, y: 180 },
-        2: { x: 0, y: -90 },
-        3: { x: 0, y: 90 },
-        4: { x: -90, y: 0 },
-        5: { x: 90, y: 0 }
+        0: { x: 0, y: 0, z: 0 },
+        1: { x: 0, y: 180, z: 0 },
+        2: { x: 0, y: -90, z: 0 },
+        3: { x: 0, y: 90, z: 0 },
+        4: { x: -90, y: 0, z: 0 },
+        5: { x: 90, y: 0, z: 0 }
       }
       const extraRotations = {
-        x: Math.floor(Math.random() * 2 + 2) * 360,
-        y: Math.floor(Math.random() * 2 + 2) * 360
+        x: Math.floor(Math.random() * 6 + 3) * 360,
+        y: Math.floor(Math.random() * 6 + 3) * 360,
+        z: Math.floor(Math.random() * 4 + 2) * 360
       }
-      dice.style.transform = `rotateX(${rotations[value].x + extraRotations.x}deg) rotateY(${rotations[value].y + extraRotations.y}deg)`
+      dice.style.transform = `rotateX(${rotations[value].x + extraRotations.x}deg) rotateY(${rotations[value].y + extraRotations.y}deg) rotateZ(${rotations[value].z + extraRotations.z}deg)`
       dice.setAttribute('data-value', value)
     })
   }, GAME_CONFIG.ROLL_DURATION)
