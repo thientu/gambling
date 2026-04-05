@@ -353,6 +353,50 @@ h1 {
   object-fit: contain;
 }
 
+.bau-cua-emoji {
+  font-size: clamp(4rem, 12vmin, 8rem);
+  line-height: 1;
+}
+
+/* Image Type Toggle Button */
+.image-type-toggle {
+  position: fixed;
+  top: 3.5rem;
+  right: 1rem;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9));
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+  transition: all 0.2s ease;
+  pointer-events: auto;
+}
+
+.image-type-toggle:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.5);
+}
+
+.image-type-toggle:active {
+  transform: translateY(0);
+}
+
+.toggle-label {
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* History emoji styling */
+.history-bau-cua-emoji {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
 /* Legend */
 .legend-img {
   width: 32px;

@@ -12,7 +12,7 @@ export function renderHistoryBar(gameType) {
 
   const smallDice = gameType === 'xuc-sac'
     ? latestRoll.values.map(v => renderSmallXucSacDice(v)).join('')
-    : latestRoll.values.map(v => renderSmallBauCuaDice(v, GAME_CONFIG)).join('')
+    : latestRoll.values.map(v => renderSmallBauCuaDice(v, GAME_CONFIG, gameState.get('bauCua.imageType'))).join('')
 
   return `
     <div class="history-bar" id="historyBar">
@@ -37,7 +37,7 @@ export function updateHistoryBar(gameType) {
 
   const smallDice = gameType === 'xuc-sac'
     ? latestRoll.values.map(v => renderSmallXucSacDice(v)).join('')
-    : latestRoll.values.map(v => renderSmallBauCuaDice(v, GAME_CONFIG)).join('')
+    : latestRoll.values.map(v => renderSmallBauCuaDice(v, GAME_CONFIG, gameState.get('bauCua.imageType'))).join('')
 
   historyBar.className = 'history-bar'
   historyBar.innerHTML = `

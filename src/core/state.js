@@ -10,7 +10,8 @@ class GameState {
         history: []
       },
       bauCua: {
-        history: []
+        history: [],
+        imageType: GAME_CONFIG.BAU_CUA.imageType
       },
       currentRoute: ''
     }
@@ -22,7 +23,10 @@ class GameState {
     try {
       const toSave = {
         xucSac: { history: this.state.xucSac.history },
-        bauCua: { history: this.state.bauCua.history }
+        bauCua: {
+          history: this.state.bauCua.history,
+          imageType: this.state.bauCua.imageType
+        }
       }
       localStorage.setItem(STORAGE_KEY, JSON.stringify(toSave))
     } catch (error) {
@@ -40,6 +44,9 @@ class GameState {
         }
         if (parsed.bauCua?.history) {
           this.state.bauCua.history = parsed.bauCua.history
+        }
+        if (parsed.bauCua?.imageType) {
+          this.state.bauCua.imageType = parsed.bauCua.imageType
         }
       }
     } catch (error) {

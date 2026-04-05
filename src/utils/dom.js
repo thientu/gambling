@@ -93,12 +93,21 @@ export function renderSmallXucSacDice(value) {
   `
 }
 
-export function renderSmallBauCuaDice(value, GAME_CONFIG) {
+export function renderSmallBauCuaDice(value, GAME_CONFIG, imageType) {
   const imageIndex = parseInt(value)
   const imageName = GAME_CONFIG.BAU_CUA.images[imageIndex]
-  return `
-    <div class="history-dice-small history-bau-cua-dice">
-      <img src="${GAME_CONFIG.BAU_CUA.imageDir}/${imageName}" alt="${GAME_CONFIG.BAU_CUA.names[imageIndex]}" class="history-bau-cua-img">
-    </div>
-  `
+
+  if (imageType === GAME_CONFIG.IMAGE_TYPES.EMOJI) {
+    return `
+      <div class="history-dice-small history-bau-cua-dice">
+        <span class="history-bau-cua-emoji">${GAME_CONFIG.BAU_CUA.emojis[imageIndex]}</span>
+      </div>
+    `
+  } else {
+    return `
+      <div class="history-dice-small history-bau-cua-dice">
+        <img src="${GAME_CONFIG.BAU_CUA.imageDir}/${imageName}" alt="${GAME_CONFIG.BAU_CUA.names[imageIndex]}" class="history-bau-cua-img">
+      </div>
+    `
+  }
 }

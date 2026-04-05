@@ -13,7 +13,7 @@ function renderHistoryModal(gameType, history) {
 
     const dice = gameType === 'xuc-sac'
       ? roll.values.map(v => renderSmallXucSacDice(v)).join('')
-      : roll.values.map(v => renderSmallBauCuaDice(v, GAME_CONFIG)).join('')
+      : roll.values.map(v => renderSmallBauCuaDice(v, GAME_CONFIG, gameState.get('bauCua.imageType'))).join('')
 
     return `
       <div class="history-item">
