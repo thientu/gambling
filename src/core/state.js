@@ -7,11 +7,13 @@ class GameState {
     this.state = {
       xucSac: {
         diceCount: GAME_CONFIG.XUC_SAC.defaultDice,
-        history: []
+        history: [],
+        shakeLocked: false
       },
       bauCua: {
         history: [],
-        imageType: GAME_CONFIG.BAU_CUA.imageType
+        imageType: GAME_CONFIG.BAU_CUA.imageType,
+        shakeLocked: false
       },
       currentRoute: ''
     }

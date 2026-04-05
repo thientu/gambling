@@ -8,6 +8,8 @@ import { rollXucSac } from '../utils/dice-roller.js'
 
 export function renderXucSac() {
   const diceCount = gameState.get('xucSac.diceCount')
+  const shakeLocked = gameState.get('xucSac.shakeLocked')
+  const lockIcon = shakeLocked ? '🔒' : '🔓'
   const diceHTML = Array.from({ length: diceCount }, (_, i) =>
     renderDice(6, `dice${i}`)
   ).join('')
@@ -16,6 +18,7 @@ export function renderXucSac() {
     <div class="container game-page xuc-sac-page" id="xuc-sacPage">
       ${renderHistoryBar('xuc-sac')}
       <div class="dice-controls">
+        <button class="dice-control-btn shake-lock-btn" id="shakeLock">${lockIcon}</button>
         <button class="dice-control-btn" id="decreaseDice">−</button>
         <button class="dice-control-btn" id="increaseDice">+</button>
       </div>
@@ -31,6 +34,7 @@ let isScreenPressed = false
 export function attachXucSacListeners(shakeCallbackSetter) {
   const decreaseBtn = domCache.get('decreaseDice')
   const increaseBtn = domCache.get('increaseDice')
+  const shakeLockBtn = domCache.get('shakeLock')
   const xucSacPage = domCache.get('xuc-sacPage')
 
   let diceCount = gameState.get('xucSac.diceCount')
@@ -42,6 +46,15 @@ export function attachXucSacListeners(shakeCallbackSetter) {
   document.addEventListener('mouseup', handlePressEnd)
   document.addEventListener('touchstart', handlePressStart)
   document.addEventListener('touchend', handlePressEnd)
+
+  shakeLockBtn &&
+    eventManager.on(shakeLockBtn, 'click', (e) => {
+      e.stopPropagation()
+      const currentLocked = gameState.get('xucSac.shakeLocked')
+      const newLocked = !currentLocked
+      gameState.set('xucSac.shakeLocked', newLocked)
+      shakeLockBtn.textContent = newLocked ? '🔒' : '🔓'
+    })
 
   decreaseBtn &&
     eventManager.on(decreaseBtn, 'click', (e) => {
@@ -77,6 +90,7 @@ export function attachXucSacListeners(shakeCallbackSetter) {
   shakeCallbackSetter(() => {
     if (document.querySelector('.history-modal-overlay')) return
     if (isScreenPressed) return
+    if (gameState.get('xucSac.shakeLocked')) return
     rollXucSac()
   })
 

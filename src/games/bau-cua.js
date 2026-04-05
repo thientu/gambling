@@ -35,6 +35,8 @@ function renderBauCuaDice(index, image, alt, imageType) {
 
 export function renderBauCua() {
   const imageType = gameState.get('bauCua.imageType')
+  const shakeLocked = gameState.get('bauCua.shakeLocked')
+  const lockIcon = shakeLocked ? '🔒' : '🔓'
   const diceHTML = Array.from({ length: GAME_CONFIG.BAU_CUA.diceCount }, (_, i) =>
     renderBauCuaDice(i + 1, GAME_CONFIG.BAU_CUA.images[0], GAME_CONFIG.BAU_CUA.names[0], imageType)
   ).join('')
@@ -44,9 +46,12 @@ export function renderBauCua() {
   return `
     <div class="container game-page bau-cua-page" id="bau-cuaPage">
       ${renderHistoryBar('bau-cua')}
-      <button class="image-type-toggle" id="imageTypeToggle" data-current="${currentType}">
-        <span class="toggle-label">${currentType === 'image' ? 'Image' : 'Emoji'}</span>
-      </button>
+      <div class="dice-controls">
+        <button class="dice-control-btn shake-lock-btn" id="shakeLock">${lockIcon}</button>
+        <button class="image-type-toggle" id="imageTypeToggle" data-current="${currentType}">
+          <span class="toggle-label">${currentType === 'image' ? 'Image' : 'Emoji'}</span>
+        </button>
+      </div>
       <div class="dice-container bau-cua-container" id="diceContainer">
         ${diceHTML}
       </div>
@@ -58,6 +63,7 @@ let isScreenPressed = false
 
 export function attachBauCuaListeners(shakeCallbackSetter) {
   const bauCuaPage = domCache.get('bau-cuaPage')
+  const shakeLockBtn = domCache.get('shakeLock')
   const imageTypeToggle = domCache.get('imageTypeToggle')
 
   const handlePressStart = () => { isScreenPressed = true }
@@ -67,6 +73,15 @@ export function attachBauCuaListeners(shakeCallbackSetter) {
   document.addEventListener('mouseup', handlePressEnd)
   document.addEventListener('touchstart', handlePressStart)
   document.addEventListener('touchend', handlePressEnd)
+
+  shakeLockBtn &&
+    eventManager.on(shakeLockBtn, 'click', (e) => {
+      e.stopPropagation()
+      const currentLocked = gameState.get('bauCua.shakeLocked')
+      const newLocked = !currentLocked
+      gameState.set('bauCua.shakeLocked', newLocked)
+      shakeLockBtn.textContent = newLocked ? '🔒' : '🔓'
+    })
 
   const shouldPreventRoll = (e) => {
     return e.target.closest('#imageTypeToggle') ||
@@ -83,6 +98,7 @@ export function attachBauCuaListeners(shakeCallbackSetter) {
   shakeCallbackSetter(() => {
     if (document.querySelector('.history-modal-overlay')) return
     if (isScreenPressed) return
+    if (gameState.get('bauCua.shakeLocked')) return
     rollBauCua()
   })
 
