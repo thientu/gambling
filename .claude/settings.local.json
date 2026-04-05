@@ -12,7 +12,8 @@
       "WebSearch",
       "mcp__tavily__tavily-extract",
       "Bash(curl:*)",
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "Bash(node:*)"
     ]
   }
 }
