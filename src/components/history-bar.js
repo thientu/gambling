@@ -7,7 +7,7 @@ export function renderHistoryBar(gameType) {
   const latestRoll = history.length > 0 ? history[history.length - 1] : null
 
   if (!latestRoll) {
-    return '<div class="history-bar history-empty"></div>'
+    return '<div class="history-bar history-empty"><div class="history-label">Chưa có lịch sử</div></div>'
   }
 
   const smallDice = gameType === 'xuc-sac'
@@ -31,7 +31,7 @@ export function updateHistoryBar(gameType) {
 
   if (!latestRoll) {
     historyBar.className = 'history-bar history-empty'
-    historyBar.innerHTML = ''
+    historyBar.innerHTML = '<div class="history-label">Chưa có lịch sử</div>'
     return
   }
 
