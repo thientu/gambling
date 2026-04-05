@@ -26,12 +26,22 @@ export function renderXucSac() {
   `
 }
 
+let isScreenPressed = false
+
 export function attachXucSacListeners(shakeCallbackSetter) {
   const decreaseBtn = domCache.get('decreaseDice')
   const increaseBtn = domCache.get('increaseDice')
   const xucSacPage = domCache.get('xuc-sacPage')
 
   let diceCount = gameState.get('xucSac.diceCount')
+
+  const handlePressStart = () => { isScreenPressed = true }
+  const handlePressEnd = () => { isScreenPressed = false }
+
+  document.addEventListener('mousedown', handlePressStart)
+  document.addEventListener('mouseup', handlePressEnd)
+  document.addEventListener('touchstart', handlePressStart)
+  document.addEventListener('touchend', handlePressEnd)
 
   decreaseBtn &&
     eventManager.on(decreaseBtn, 'click', (e) => {
@@ -66,6 +76,7 @@ export function attachXucSacListeners(shakeCallbackSetter) {
 
   shakeCallbackSetter(() => {
     if (document.querySelector('.history-modal-overlay')) return
+    if (isScreenPressed) return
     rollXucSac()
   })
 

@@ -54,9 +54,19 @@ export function renderBauCua() {
   `
 }
 
+let isScreenPressed = false
+
 export function attachBauCuaListeners(shakeCallbackSetter) {
   const bauCuaPage = domCache.get('bau-cuaPage')
   const imageTypeToggle = domCache.get('imageTypeToggle')
+
+  const handlePressStart = () => { isScreenPressed = true }
+  const handlePressEnd = () => { isScreenPressed = false }
+
+  document.addEventListener('mousedown', handlePressStart)
+  document.addEventListener('mouseup', handlePressEnd)
+  document.addEventListener('touchstart', handlePressStart)
+  document.addEventListener('touchend', handlePressEnd)
 
   const shouldPreventRoll = (e) => {
     return e.target.closest('#imageTypeToggle') ||
@@ -72,6 +82,7 @@ export function attachBauCuaListeners(shakeCallbackSetter) {
 
   shakeCallbackSetter(() => {
     if (document.querySelector('.history-modal-overlay')) return
+    if (isScreenPressed) return
     rollBauCua()
   })
 
@@ -85,6 +96,4 @@ export function attachBauCuaListeners(shakeCallbackSetter) {
       gameState.set('bauCua.imageType', newType)
       navigate(window.location.hash)
     })
-
-  shakeCallbackSetter(() => rollBauCua())
 }
