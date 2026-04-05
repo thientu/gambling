@@ -6,4 +6,8 @@ Allow: /
 # Disallow: /private/
 
 # Sitemap
+<<<<<<< HEAD
 Sitemap: https://yourdomain.com/sitemap.xml
+=======
+Sitemap: https://thientu.github.io/gambling/sitemap.xml
+>>>>>>> 4bf3c07 (feat: add - Implement comprehensive SEO optimization)

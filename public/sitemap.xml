@@ -1,19 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+<<<<<<< HEAD
     <loc>https://yourdomain.com/</loc>
+=======
+    <loc>https://thientu.github.io/gambling/</loc>
+>>>>>>> 4bf3c07 (feat: add - Implement comprehensive SEO optimization)
     <lastmod>2025-01-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://yourdomain.com/#xuc-sac</loc>
+=======
+    <loc>https://thientu.github.io/gambling/#xuc-sac</loc>
+>>>>>>> 4bf3c07 (feat: add - Implement comprehensive SEO optimization)
     <lastmod>2025-01-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://yourdomain.com/#bau-cua</loc>
+=======
+    <loc>https://thientu.github.io/gambling/#bau-cua</loc>
+>>>>>>> 4bf3c07 (feat: add - Implement comprehensive SEO optimization)
     <lastmod>2025-01-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
