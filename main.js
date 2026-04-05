@@ -94,15 +94,20 @@ function renderDice(value, id = 'dice') {
     6: ['<span class="dot"></span>', '<span class="dot"></span>', '<span class="dot"></span>', '<span class="dot"></span>', '<span class="dot"></span>', '<span class="dot"></span>']
   }
 
+  const renderFace = (num) => {
+    const dots = faceDots[num] || faceDots[1]
+    return `<div class="dice-face dice-face-${num}">${dots.join('')}</div>`
+  }
+
   return `
     <div class="dice-scene" id="${id}Scene">
       <div class="dice" id="${id}" data-value="${value}">
-        <div class="dice-face dice-face-1">${faceDots[1].join('')}</div>
-        <div class="dice-face dice-face-2">${faceDots[2].join('')}</div>
-        <div class="dice-face dice-face-3">${faceDots[3].join('')}</div>
-        <div class="dice-face dice-face-4">${faceDots[4].join('')}</div>
-        <div class="dice-face dice-face-5">${faceDots[5].join('')}</div>
-        <div class="dice-face dice-face-6">${faceDots[6].join('')}</div>
+        ${renderFace(1)}
+        ${renderFace(2)}
+        ${renderFace(3)}
+        ${renderFace(4)}
+        ${renderFace(5)}
+        ${renderFace(6)}
       </div>
     </div>
   `
