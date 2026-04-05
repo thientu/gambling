@@ -47,7 +47,7 @@ export function rollXucSac() {
     containerSelector: '.xuc-sac-container .dice',
     rotationMapping: DICE_ROTATIONS.xucSac,
     valueRange: [1, 6],
-    gameType: 'xucSac'
+    gameType: 'xuc-sac'
   })
 }
 
@@ -56,6 +56,6 @@ export function rollBauCua() {
     containerSelector: '.bau-cua-container .bau-cua-dice',
     rotationMapping: DICE_ROTATIONS.bauCua,
     valueRange: [0, 5],
-    gameType: 'bauCua'
+    gameType: 'bau-cua'
   })
 }
