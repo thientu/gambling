@@ -37,12 +37,16 @@ function renderXucSac() {
   return `
     <div class="container game-page">
       <button class="back-btn" onclick="window.location.hash=''">← Quay lại</button>
-      <h1>Xúc Xắc 🎲</h1>
-      <div class="dice-container">
-        <div class="dice" id="dice"></div>
+      <div class="dice-container" id="diceContainer">
+        <div class="dice dice-6" id="dice">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
       </div>
-      <button class="roll-btn" id="rollBtn">Quay</button>
-      <div class="result" id="result"></div>
     </div>
   `
 }
@@ -53,21 +57,10 @@ function renderBauCua() {
   return `
     <div class="container game-page">
       <button class="back-btn" onclick="window.location.hash=''">← Quay lại</button>
-      <h1>Bầu Cua 🎯</h1>
-      <div class="dice-container">
+      <div class="dice-container" id="diceContainer">
         ${[1, 2, 3].map(i => `
           <div class="bau-cua-dice" id="dice${i}">
             <img src="/gambling/bau-cua/bau.svg" alt="bầu" class="bau-cua-img">
-          </div>
-        `).join('')}
-      </div>
-      <button class="roll-btn" id="rollBtn">Quay</button>
-      <div class="result" id="result"></div>
-      <div class="bau-cua-legend">
-        ${faceImages.map((img, i) => `
-          <div class="legend-item">
-            <img src="/gambling/bau-cua/${img}.svg" alt="${faces[i]}" class="legend-img">
-            ${faces[i]}
           </div>
         `).join('')}
       </div>
@@ -76,10 +69,10 @@ function renderBauCua() {
 }
 
 function attachEventListeners() {
-  const rollBtn = document.getElementById('rollBtn')
-  if (!rollBtn) return
+  const diceContainer = document.getElementById('diceContainer')
+  if (!diceContainer) return
 
-  rollBtn.addEventListener('click', () => {
+  diceContainer.addEventListener('click', () => {
     const hash = window.location.hash.slice(1)
     if (hash === 'xuc-sac') {
       rollXucSac()
@@ -91,11 +84,7 @@ function attachEventListeners() {
 
 function rollXucSac() {
   const dice = document.getElementById('dice')
-  const result = document.getElementById('result')
-  const rollBtn = document.getElementById('rollBtn')
 
-  rollBtn.disabled = true
-  result.textContent = ''
   dice.classList.add('rolling')
 
   setTimeout(() => {
@@ -110,20 +99,12 @@ function rollXucSac() {
       dot.className = 'dot'
       dice.appendChild(dot)
     }
-
-    result.textContent = `Kết quả: ${value}`
-    rollBtn.disabled = false
   }, 600)
 }
 
 function rollBauCua() {
-  const result = document.getElementById('result')
-  const rollBtn = document.getElementById('rollBtn')
   const faceImages = ['bau.svg', 'cua.svg', 'tom.svg', 'ca.svg', 'ga.svg', 'nai.svg']
   const faceNames = ['bầu', 'cua', 'tôm', 'cá', 'gà', 'nai']
-
-  rollBtn.disabled = true
-  result.textContent = ''
 
   for (let i = 1; i <= 3; i++) {
     const dice = document.getElementById(`dice${i}`)
@@ -132,7 +113,6 @@ function rollBauCua() {
   }
 
   setTimeout(() => {
-    const results = []
     for (let i = 1; i <= 3; i++) {
       const dice = document.getElementById(`dice${i}`)
       const img = dice.querySelector('.bau-cua-img')
@@ -140,10 +120,7 @@ function rollBauCua() {
       img.src = `/gambling/bau-cua/${faceImages[value]}`
       img.alt = faceNames[value]
       img.classList.remove('rolling')
-      results.push(faceNames[value])
     }
-    result.textContent = `Kết quả: ${results.join(' - ')}`
-    rollBtn.disabled = false
   }, 800)
 }
 
