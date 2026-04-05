@@ -60,7 +60,7 @@ function renderBauCua() {
       <div class="dice-container" id="diceContainer">
         ${[1, 2, 3].map(i => `
           <div class="bau-cua-dice" id="dice${i}">
-            <img src="/gambling/bau-cua/bau.svg" alt="bầu" class="bau-cua-img">
+            <img src="/gambling/bau-cua/bau.png" alt="bầu" class="bau-cua-img">
           </div>
         `).join('')}
       </div>
@@ -103,7 +103,7 @@ function rollXucSac() {
 }
 
 function rollBauCua() {
-  const faceImages = ['bau.svg', 'cua.svg', 'tom.svg', 'ca.svg', 'ga.svg', 'nai.svg']
+  const faceImages = ['bau.png', 'cua.png', 'tom.png', 'ca.png', 'ga.png', 'nai.png']
   const faceNames = ['bầu', 'cua', 'tôm', 'cá', 'gà', 'nai']
 
   for (let i = 1; i <= 3; i++) {
