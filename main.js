@@ -140,7 +140,7 @@ function attachEventListeners() {
 }
 
 function attachXucSacListeners() {
-  const xucSacPage = document.getElementById('xuc-sac-page')
+  const xucSacPage = document.getElementById('xuc-sacPage')
   const decreaseBtn = document.getElementById('decreaseDice')
   const increaseBtn = document.getElementById('increaseDice')
 
@@ -168,7 +168,7 @@ function attachXucSacListeners() {
 }
 
 function attachBauCuaListeners() {
-  const bauCuaPage = document.getElementById('bau-cua-page')
+  const bauCuaPage = document.getElementById('bau-cuaPage')
   const backBtn = bauCuaPage?.querySelector('.back-btn')
 
   backBtn?.addEventListener('click', (e) => {
