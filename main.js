@@ -17,6 +17,11 @@ const GAME_CONFIG = {
   }
 }
 
+// History storage
+let xucSacHistory = []
+let bauCuaHistory = []
+const MAX_HISTORY = 50
+
 const routes = {
   '': renderHome,
   'xuc-sac': renderXucSac,
@@ -62,6 +67,7 @@ function renderHome() {
 
 function renderXucSac() {
   return renderGamePage('xuc-sac', `
+    ${renderHistoryBar('xuc-sac')}
     <div class="dice-controls">
       <button class="dice-control-btn" id="decreaseDice">−</button>
       <button class="dice-control-btn" id="increaseDice">+</button>
@@ -78,6 +84,7 @@ function renderBauCua() {
   ).join('')
 
   return renderGamePage('bau-cua', `
+    ${renderHistoryBar('bau-cua')}
     <div class="dice-container bau-cua-container" id="diceContainer">
       ${diceHTML}
     </div>
@@ -127,6 +134,137 @@ function renderBauCuaDice(index, image, alt) {
       </div>
     </div>
   `
+}
+
+function renderHistoryBar(gameType) {
+  const history = gameType === 'xuc-sac' ? xucSacHistory : bauCuaHistory
+  const latestRoll = history.length > 0 ? history[history.length - 1] : null
+
+  if (!latestRoll) {
+    return '<div class="history-bar history-empty"></div>'
+  }
+
+  const smallDice = gameType === 'xuc-sac'
+    ? latestRoll.values.map(v => renderSmallXucSacDice(v)).join('')
+    : latestRoll.values.map(v => renderSmallBauCuaDice(v)).join('')
+
+  return `
+    <div class="history-bar" id="historyBar" onclick="showHistoryModal('${gameType}')">
+      <div class="history-label">Lần trước:</div>
+      <div class="history-dice">${smallDice}</div>
+    </div>
+  `
+}
+
+function renderSmallXucSacDice(value) {
+  return `
+    <div class="history-dice-small">
+      <div class="history-dice-face history-dice-face-${value}">
+        ${renderSmallDiceDots(value)}
+      </div>
+    </div>
+  `
+}
+
+function renderSmallBauCuaDice(value) {
+  const imageIndex = parseInt(value)
+  const imageName = GAME_CONFIG.BAU_CUA.images[imageIndex]
+  return `
+    <div class="history-dice-small history-bau-cua-dice">
+      <img src="${GAME_CONFIG.BAU_CUA.imageDir}/${imageName}" alt="${GAME_CONFIG.BAU_CUA.names[imageIndex]}" class="history-bau-cua-img">
+    </div>
+  `
+}
+
+function renderSmallDiceDots(value) {
+  const dotPatterns = {
+    1: [1],
+    2: [1, 3],
+    3: [1, 2, 3],
+    4: [1, 3, 7, 9],
+    5: [1, 3, 5, 7, 9],
+    6: [1, 4, 7, 3, 6, 9]
+  }
+  const positions = dotPatterns[value] || dotPatterns[1]
+  return positions.map(pos => `<span class="history-dot" style="grid-area: ${Math.ceil(pos / 3)} / ${((pos - 1) % 3) + 1}"></span>`).join('')
+}
+
+function showHistoryModal(gameType) {
+  const history = gameType === 'xuc-sac' ? xucSacHistory : bauCuaHistory
+  if (history.length === 0) return
+
+  const modalHTML = renderHistoryModal(gameType, history)
+  const modal = document.createElement('div')
+  modal.innerHTML = modalHTML
+  document.body.appendChild(modal)
+
+  modal.onclick = (e) => {
+    if (e.target === modal || e.target.classList.contains('history-close')) {
+      modal.remove()
+    }
+  }
+}
+
+function renderHistoryModal(gameType, history) {
+  const gameTitle = gameType === 'xuc-sac' ? 'Xúc Xắc' : 'Bầu Cua'
+  const reversedHistory = [...history].reverse()
+
+  const historyItems = reversedHistory.map((roll, index) => {
+    const rollNumber = history.length - index
+    const time = new Date(roll.timestamp).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit', second: '2-digit' })
+    const dice = gameType === 'xuc-sac'
+      ? roll.values.map(v => renderSmallXucSacDice(v)).join('')
+      : roll.values.map(v => renderSmallBauCuaDice(v)).join('')
+
+    return `
+      <div class="history-item">
+        <div class="history-item-info">
+          <span class="history-item-number">#${rollNumber}</span>
+          <span class="history-item-time">${time}</span>
+        </div>
+        <div class="history-item-dice">${dice}</div>
+      </div>
+    `
+  }).join('')
+
+  return `
+    <div class="history-modal-overlay">
+      <div class="history-modal">
+        <div class="history-modal-header">
+          <h2>Lịch sử ${gameTitle}</h2>
+          <button class="history-close">&times;</button>
+        </div>
+        <div class="history-modal-content">
+          ${historyItems}
+        </div>
+      </div>
+    </div>
+  `
+}
+
+function updateHistoryBar(gameType) {
+  const historyBar = document.getElementById('historyBar')
+  if (!historyBar) return
+
+  const history = gameType === 'xuc-sac' ? xucSacHistory : bauCuaHistory
+  const latestRoll = history.length > 0 ? history[history.length - 1] : null
+
+  if (!latestRoll) {
+    historyBar.className = 'history-bar history-empty'
+    historyBar.innerHTML = ''
+    return
+  }
+
+  const smallDice = gameType === 'xuc-sac'
+    ? latestRoll.values.map(v => renderSmallXucSacDice(v)).join('')
+    : latestRoll.values.map(v => renderSmallBauCuaDice(v)).join('')
+
+  historyBar.className = 'history-bar'
+  historyBar.innerHTML = `
+    <div class="history-label">Lần trước:</div>
+    <div class="history-dice">${smallDice}</div>
+  `
+  historyBar.onclick = () => showHistoryModal(gameType)
 }
 
 function attachEventListeners() {
@@ -283,8 +421,10 @@ function rollXucSac() {
   })
 
   setTimeout(() => {
+    const values = []
     diceElements.forEach(dice => {
       const value = Math.floor(Math.random() * 6) + 1
+      values.push(value)
       const rotations = {
         1: { x: 0, y: 0, z: 0 },
         2: { x: 0, y: 180, z: 0 },
@@ -301,6 +441,20 @@ function rollXucSac() {
       dice.style.transform = `rotateX(${rotations[value].x + extraRotations.x}deg) rotateY(${rotations[value].y + extraRotations.y}deg) rotateZ(${rotations[value].z + extraRotations.z}deg)`
       dice.setAttribute('data-value', value)
     })
+
+    // Save to history
+    xucSacHistory.push({
+      values: values,
+      timestamp: Date.now()
+    })
+
+    // Limit history size
+    if (xucSacHistory.length > MAX_HISTORY) {
+      xucSacHistory.shift()
+    }
+
+    // Update history bar
+    updateHistoryBar('xuc-sac')
   }, GAME_CONFIG.ROLL_DURATION)
 }
 
@@ -321,8 +475,10 @@ function rollBauCua() {
   })
 
   setTimeout(() => {
+    const values = []
     diceElements.forEach(dice => {
       const value = Math.floor(Math.random() * 6)
+      values.push(value)
       const rotations = {
         0: { x: 0, y: 0, z: 0 },
         1: { x: 0, y: 180, z: 0 },
@@ -339,6 +495,20 @@ function rollBauCua() {
       dice.style.transform = `rotateX(${rotations[value].x + extraRotations.x}deg) rotateY(${rotations[value].y + extraRotations.y}deg) rotateZ(${rotations[value].z + extraRotations.z}deg)`
       dice.setAttribute('data-value', value)
     })
+
+    // Save to history
+    bauCuaHistory.push({
+      values: values,
+      timestamp: Date.now()
+    })
+
+    // Limit history size
+    if (bauCuaHistory.length > MAX_HISTORY) {
+      bauCuaHistory.shift()
+    }
+
+    // Update history bar
+    updateHistoryBar('bau-cua')
   }, GAME_CONFIG.ROLL_DURATION)
 }
 
