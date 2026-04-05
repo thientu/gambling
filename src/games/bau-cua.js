@@ -36,7 +36,7 @@ function renderBauCuaDice(index, image, alt, imageType) {
 export function renderBauCua() {
   const imageType = gameState.get('bauCua.imageType')
   const shakeLocked = gameState.get('bauCua.shakeLocked')
-  const lockIcon = shakeLocked ? '🔓' : '🔒'
+  const lockIcon = shakeLocked ? '🔒' : '🔓'
   const diceHTML = Array.from({ length: GAME_CONFIG.BAU_CUA.diceCount }, (_, i) =>
     renderBauCuaDice(i + 1, GAME_CONFIG.BAU_CUA.images[0], GAME_CONFIG.BAU_CUA.names[0], imageType)
   ).join('')
@@ -84,7 +84,7 @@ export function attachBauCuaListeners(shakeCallbackSetter) {
       const currentLocked = gameState.get('bauCua.shakeLocked')
       const newLocked = !currentLocked
       gameState.set('bauCua.shakeLocked', newLocked)
-      shakeLockBtn.textContent = newLocked ? '🔓' : '🔒'
+      shakeLockBtn.textContent = newLocked ? '🔒' : '🔓'
     })
 
   const shouldPreventRoll = (e) => {

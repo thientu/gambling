@@ -9,7 +9,7 @@ import { rollXucSac } from '../utils/dice-roller.js'
 export function renderXucSac() {
   const diceCount = gameState.get('xucSac.diceCount')
   const shakeLocked = gameState.get('xucSac.shakeLocked')
-  const lockIcon = shakeLocked ? '🔓' : '🔒'
+  const lockIcon = shakeLocked ? '🔒' : '🔓'
   const diceHTML = Array.from({ length: diceCount }, (_, i) =>
     renderDice(6, `dice${i}`)
   ).join('')
@@ -57,7 +57,7 @@ export function attachXucSacListeners(shakeCallbackSetter) {
       const currentLocked = gameState.get('xucSac.shakeLocked')
       const newLocked = !currentLocked
       gameState.set('xucSac.shakeLocked', newLocked)
-      shakeLockBtn.textContent = newLocked ? '🔓' : '🔒'
+      shakeLockBtn.textContent = newLocked ? '🔒' : '🔓'
     })
 
   decreaseBtn &&
