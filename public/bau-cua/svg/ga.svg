@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="farm-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F4A460;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#CD853F;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <circle cx="50" cy="50" r="48" fill="url(#farm-grad)" stroke="#333" stroke-width="2"/>
+  <!-- Chicken body -->
+  <ellipse cx="50" cy="58" rx="22" ry="16" fill="#FF6B35" stroke="#333" stroke-width="2"/>
+  <!-- Chicken neck and head -->
+  <ellipse cx="35" cy="40" rx="10" ry="12" fill="#FF6B35" stroke="#333" stroke-width="2"/>
+  <circle cx="32" cy="30" r="8" fill="#FF6B35" stroke="#333" stroke-width="2"/>
+  <!-- Comb -->
+  <path d="M 28 22 L 30 16 L 32 20 L 34 14 L 36 20 L 38 22" fill="#DC143C" stroke="#333" stroke-width="1.5"/>
+  <!-- Wattle -->
+  <ellipse cx="26" cy="32" rx="3" ry="5" fill="#DC143C" stroke="#333" stroke-width="1"/>
+  <!-- Beak -->
+  <path d="M 24 28 L 18 30 L 24 32" fill="#FFD700" stroke="#333" stroke-width="1.5"/>
+  <!-- Eye -->
+  <circle cx="30" cy="28" r="2.5" fill="#FFF" stroke="#333" stroke-width="1"/>
+  <circle cx="30" cy="28" r="1.2" fill="#333"/>
+  <!-- Wing -->
+  <ellipse cx="55" cy="55" rx="12" ry="8" fill="#FF8C00" stroke="#333" stroke-width="1.5"/>
+  <!-- Tail feathers -->
+  <path d="M 72 50 Q 82 45 85 50" stroke="#8B4513" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M 72 54 Q 84 52 88 56" stroke="#8B4513" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M 72 58 Q 82 60 85 62" stroke="#8B4513" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- Legs -->
+  <line x1="42" y1="72" x2="40" y2="85" stroke="#8B4513" stroke-width="3" stroke-linecap="round"/>
+  <line x1="58" y1="72" x2="60" y2="85" stroke="#8B4513" stroke-width="3" stroke-linecap="round"/>
+  <!-- Feet -->
+  <path d="M 35 85 L 40 88 L 45 85" stroke="#8B4513" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M 55 85 L 60 88 L 65 85" stroke="#8B4513" stroke-width="2" fill="none" stroke-linecap="round"/>
+</svg>

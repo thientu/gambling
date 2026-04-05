@@ -7,9 +7,9 @@ export const GAME_CONFIG = {
   },
   BAU_CUA: {
     diceCount: 3,
-    images: ['bau.png', 'cua.png', 'tom.png', 'ca.png', 'ga.png', 'nai.png'],
+    images: ['bau.svg', 'cua.svg', 'tom.svg', 'ca.svg', 'ga.svg', 'nai.svg'],
     names: ['bầu', 'cua', 'tôm', 'cá', 'gà', 'nai'],
-    imageDir: 'https://cdn.jsdelivr.net/gh/thientu/gambling@main/public/bau-cua'
+    imageDir: '/bau-cua/svg'
   },
   MAX_HISTORY: 50
 }
