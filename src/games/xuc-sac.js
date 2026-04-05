@@ -90,7 +90,7 @@ export function attachXucSacListeners(shakeCallbackSetter) {
   shakeCallbackSetter(() => {
     if (document.querySelector('.history-modal-overlay')) return
     if (isScreenPressed) return
-    if (gameState.get('xucSac.shakeLocked')) return
+    if (!gameState.get('xucSac.shakeLocked')) return
     rollXucSac()
   })
 

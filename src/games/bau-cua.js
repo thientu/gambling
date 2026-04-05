@@ -98,7 +98,7 @@ export function attachBauCuaListeners(shakeCallbackSetter) {
   shakeCallbackSetter(() => {
     if (document.querySelector('.history-modal-overlay')) return
     if (isScreenPressed) return
-    if (gameState.get('bauCua.shakeLocked')) return
+    if (!gameState.get('bauCua.shakeLocked')) return
     rollBauCua()
   })
 
