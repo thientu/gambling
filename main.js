@@ -35,14 +35,9 @@ function renderGamePage(gameType, content) {
   const gameClass = gameType === 'xuc-sac' ? 'xuc-sac-page' : 'bau-cua-page'
   return `
     <div class="container game-page ${gameClass}" id="${gameType}Page">
-      <button class="back-btn" onclick="window.location.hash=''">← Quay lại</button>
       ${content}
     </div>
   `
-}
-
-function renderBackButton() {
-  return `<button class="back-btn" onclick="window.location.hash=''">← Quay lại</button>`
 }
 
 function renderHome() {
@@ -67,12 +62,12 @@ function renderHome() {
 
 function renderXucSac() {
   return renderGamePage('xuc-sac', `
-    <div class="dice-container xuc-sac-container" id="diceContainer">
-      ${renderDice(6)}
-    </div>
     <div class="dice-controls">
       <button class="dice-control-btn" id="decreaseDice">−</button>
       <button class="dice-control-btn" id="increaseDice">+</button>
+    </div>
+    <div class="dice-container xuc-sac-container" id="diceContainer">
+      ${renderDice(6)}
     </div>
   `)
 }
@@ -169,11 +164,6 @@ function attachXucSacListeners() {
 
 function attachBauCuaListeners() {
   const bauCuaPage = document.getElementById('bau-cuaPage')
-  const backBtn = bauCuaPage?.querySelector('.back-btn')
-
-  backBtn?.addEventListener('click', (e) => {
-    e.stopPropagation()
-  })
 
   bauCuaPage?.addEventListener('click', () => {
     rollBauCua()
