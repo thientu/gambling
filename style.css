@@ -102,27 +102,11 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.bau-cua-page {
   height: 100vh;
   max-height: 100vh;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   user-select: none;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-.xuc-sac-page {
-  height: 100vh;
-  max-height: 100vh;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-  user-select: none;
-  display: flex;
-  flex-direction: column;
   overflow: hidden;
 }
 
@@ -154,27 +138,18 @@ h1 {
   gap: 1rem;
   margin: 2rem 0;
   flex-wrap: wrap;
+  flex: 1;
+  flex-direction: column;
+  padding: 0.5rem 0;
+  overflow: hidden;
 }
 
 .xuc-sac-container {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   gap: 0.75rem;
-  padding: 0.5rem 0;
-  overflow: hidden;
 }
 
 .bau-cua-container {
-  flex: 1;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   gap: 1.5rem;
-  padding: 0.5rem 0;
-  overflow: hidden;
 }
 
 /* Dice Controls */
@@ -393,7 +368,7 @@ h1 {
 }
 
 .dice.rolling,
-.bau-cua-face.rolling {
+.bau-cua-img.rolling {
   animation: roll 0.6s ease-in-out;
 }
 
