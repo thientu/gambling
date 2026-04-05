@@ -156,10 +156,9 @@ function rollXucSac() {
 }
 
 function rollBauCua() {
-  const templates = ['bau-cua', 'bau-cua-classic']
   const faceImages = ['bau.png', 'cua.png', 'tom.png', 'ca.png', 'ga.png', 'nai.png']
   const faceNames = ['bầu', 'cua', 'tôm', 'cá', 'gà', 'nai']
-  const selectedTemplate = templates[Math.floor(Math.random() * templates.length)]
+  const template = 'bau-cua'
 
   for (let i = 1; i <= 3; i++) {
     const dice = document.getElementById(`dice${i}`)
@@ -172,7 +171,7 @@ function rollBauCua() {
       const dice = document.getElementById(`dice${i}`)
       const img = dice.querySelector('.bau-cua-img')
       const value = Math.floor(Math.random() * 6)
-      img.src = `/gambling/${selectedTemplate}/${faceImages[value]}`
+      img.src = `/gambling/${template}/${faceImages[value]}`
       img.alt = faceNames[value]
       img.classList.remove('rolling')
     }
