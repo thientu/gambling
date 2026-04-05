@@ -90,14 +90,41 @@ function renderBauCua() {
 }
 
 function renderDice(value, id = 'dice') {
-  const dots = Array.from({ length: value }, () => '<span class="dot"></span>').join('')
-  return `<div class="dice dice-${value}" id="${id}">${dots}</div>`
+  const faceDots = {
+    1: ['<span class="dot"></span>'],
+    2: ['<span class="dot"></span>', '<span class="dot"></span>'],
+    3: ['<span class="dot"></span>', '<span class="dot"></span>', '<span class="dot"></span>'],
+    4: ['<span class="dot"></span>', '<span class="dot"></span>', '<span class="dot"></span>', '<span class="dot"></span>'],
+    5: ['<span class="dot"></span>', '<span class="dot"></span>', '<span class="dot"></span>', '<span class="dot"></span>', '<span class="dot"></span>'],
+    6: ['<span class="dot"></span>', '<span class="dot"></span>', '<span class="dot"></span>', '<span class="dot"></span>', '<span class="dot"></span>', '<span class="dot"></span>']
+  }
+
+  return `
+    <div class="dice-scene" id="${id}Scene">
+      <div class="dice" id="${id}" data-value="${value}">
+        <div class="dice-face dice-face-1">${faceDots[1].join('')}</div>
+        <div class="dice-face dice-face-2">${faceDots[2].join('')}</div>
+        <div class="dice-face dice-face-3">${faceDots[3].join('')}</div>
+        <div class="dice-face dice-face-4">${faceDots[4].join('')}</div>
+        <div class="dice-face dice-face-5">${faceDots[5].join('')}</div>
+        <div class="dice-face dice-face-6">${faceDots[6].join('')}</div>
+      </div>
+    </div>
+  `
 }
 
 function renderBauCuaDice(index, image, alt) {
+  const faces = GAME_CONFIG.BAU_CUA.images.map((img, i) => `
+    <div class="bau-cua-face bau-cua-face-${i + 1}">
+      <img src="${GAME_CONFIG.BAU_CUA.imageDir}/${img}" alt="${GAME_CONFIG.BAU_CUA.names[i]}" class="bau-cua-img">
+    </div>
+  `).join('')
+
   return `
-    <div class="bau-cua-dice" id="dice${index}">
-      <img src="${GAME_CONFIG.BAU_CUA.imageDir}/${image}.png" alt="${alt}" class="bau-cua-img">
+    <div class="bau-cua-dice-scene" id="dice${index}Scene">
+      <div class="bau-cua-dice" id="dice${index}" data-value="${0}">
+        ${faces}
+      </div>
     </div>
   `
 }
@@ -176,28 +203,66 @@ function rollXucSac() {
   const diceElements = document.querySelectorAll('.xuc-sac-container .dice')
   if (!diceElements.length) return
 
-  rollDice(diceElements, () => {
+  diceElements.forEach(dice => {
+    const extraRotations = {
+      x: Math.floor(Math.random() * 4) * 360,
+      y: Math.floor(Math.random() * 4) * 360
+    }
+    dice.style.transform = `rotateX(${extraRotations.x}deg) rotateY(${extraRotations.y}deg)`
+  })
+
+  setTimeout(() => {
     diceElements.forEach(dice => {
       const value = Math.floor(Math.random() * 6) + 1
-      dice.className = `dice dice-${value}`
-      dice.innerHTML = Array.from({ length: value }, () => '<span class="dot"></span>').join('')
+      const rotations = {
+        1: { x: 0, y: 0 },
+        2: { x: 0, y: 180 },
+        3: { x: 0, y: -90 },
+        4: { x: 0, y: 90 },
+        5: { x: -90, y: 0 },
+        6: { x: 90, y: 0 }
+      }
+      const extraRotations = {
+        x: Math.floor(Math.random() * 2 + 2) * 360,
+        y: Math.floor(Math.random() * 2 + 2) * 360
+      }
+      dice.style.transform = `rotateX(${rotations[value].x + extraRotations.x}deg) rotateY(${rotations[value].y + extraRotations.y}deg)`
+      dice.setAttribute('data-value', value)
     })
-  })
+  }, GAME_CONFIG.ROLL_DURATION)
 }
 
 function rollBauCua() {
   const diceElements = document.querySelectorAll('.bau-cua-container .bau-cua-dice')
   if (!diceElements.length) return
 
-  const images = diceElements.map(dice => dice.querySelector('.bau-cua-img'))
-
-  rollDice(images, () => {
-    images.forEach(img => {
-      const value = Math.floor(Math.random() * 6)
-      img.src = `${GAME_CONFIG.BAU_CUA.imageDir}/${GAME_CONFIG.BAU_CUA.images[value]}`
-      img.alt = GAME_CONFIG.BAU_CUA.names[value]
-    })
+  diceElements.forEach(dice => {
+    const extraRotations = {
+      x: Math.floor(Math.random() * 4) * 360,
+      y: Math.floor(Math.random() * 4) * 360
+    }
+    dice.style.transform = `rotateX(${extraRotations.x}deg) rotateY(${extraRotations.y}deg)`
   })
+
+  setTimeout(() => {
+    diceElements.forEach(dice => {
+      const value = Math.floor(Math.random() * 6)
+      const rotations = {
+        0: { x: 0, y: 0 },
+        1: { x: 0, y: 180 },
+        2: { x: 0, y: -90 },
+        3: { x: 0, y: 90 },
+        4: { x: -90, y: 0 },
+        5: { x: 90, y: 0 }
+      }
+      const extraRotations = {
+        x: Math.floor(Math.random() * 2 + 2) * 360,
+        y: Math.floor(Math.random() * 2 + 2) * 360
+      }
+      dice.style.transform = `rotateX(${rotations[value].x + extraRotations.x}deg) rotateY(${rotations[value].y + extraRotations.y}deg)`
+      dice.setAttribute('data-value', value)
+    })
+  }, GAME_CONFIG.ROLL_DURATION)
 }
 
 window.addEventListener('hashchange', router)
