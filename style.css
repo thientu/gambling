@@ -149,6 +149,11 @@ h1 {
   margin: 3rem 0;
 }
 
+.bau-cua-container {
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
 /* Dice Controls */
 .dice-controls {
   display: flex;

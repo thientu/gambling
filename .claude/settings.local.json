@@ -9,7 +9,10 @@
       "Bash(git push:*)",
       "Bash(npm run dev:*)",
       "mcp__tavily__tavily-search",
-      "WebSearch"
+      "WebSearch",
+      "mcp__tavily__tavily-extract",
+      "Bash(curl:*)",
+      "Bash(cat:*)"
     ]
   }
 }
