@@ -381,62 +381,21 @@ h1 {
   animation: roll 0.6s ease-in-out;
 }
 
-/* Landscape mobile */
-@media (max-width: 767px) and (orientation: landscape) {
-  .xuc-sac-container {
-    flex-direction: row;
-    gap: 1.5rem;
-  }
-
-  .xuc-sac-container .dice {
-    width: 60px;
-    height: 60px;
-    padding: 6px;
-  }
-
-  .xuc-sac-container .dice .dot {
-    width: 7px;
-    height: 7px;
-  }
-
-  .back-btn {
-    padding: 0.3rem 0.6rem;
-    font-size: 0.85rem;
-    margin-bottom: 0.25rem;
-  }
-
-  .dice-control-btn {
-    width: 32px;
-    height: 32px;
-    font-size: 1.1rem;
-  }
-
-  .dice-controls {
-    gap: 1.5rem;
-    padding: 0.5rem 1rem 0.75rem;
-  }
-}
-
 /* Desktop improvements */
 @media (min-width: 768px) {
   h1 {
     font-size: 2.5rem;
   }
 
-  .xuc-sac-container {
-    flex-direction: row;
-    gap: 2rem;
-  }
-
   .xuc-sac-container .dice {
-    width: 100px;
-    height: 100px;
-    padding: 10px;
+    width: 90px;
+    height: 90px;
+    padding: 9px;
   }
 
   .xuc-sac-container .dice .dot {
-    width: 11px;
-    height: 11px;
+    width: 10px;
+    height: 10px;
   }
 
   .dice {
@@ -465,8 +424,8 @@ h1 {
   }
 
   .dice-control-btn {
-    width: 44px;
-    height: 44px;
-    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    font-size: 1.4rem;
   }
 }
