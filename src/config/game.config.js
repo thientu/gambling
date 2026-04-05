@@ -14,7 +14,7 @@ export const GAME_CONFIG = {
     images: ['bau.png', 'cua.png', 'tom.png', 'ca.png', 'ga.png', 'nai.png'],
     emojis: ['🧉', '🦀', '🦐', '🐟', '🐓', '🦌'],
     names: ['bầu', 'cua', 'tôm', 'cá', 'gà', 'nai'],
-    imageDir: '/bau-cua',
+    imageDir: 'https://cdn.jsdelivr.net/gh/thientu/gambling@main/public/bau-cua',
     imageType: 'image'
   },
   MAX_HISTORY: 50
